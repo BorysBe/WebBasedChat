@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using NUnit.Framework.Constraints;
 using TechTalk.SpecFlow;
 using WebBasedChat.Client.Models;
 
@@ -13,20 +14,21 @@ namespace WebBasedChat.Specification
             var application = new Application(new State());
             ScenarioContext.Current["application"] = application;
         }
-        
-        [When(@"User see first screen")]
-        public void WhenUserSeeFirstScreen()
+
+        [Given(@"User see application window")]
+        [When(@"User see application window")]
+        public void WhenUserSeeApplicationWindow()
         {
             var app = (Application)ScenarioContext.Current["application"];
             app.Show();
         }
-        
+
         [Then(@"Should see Screen (.*)")]
-        public void ThenShouldSeeScreen(int p0)
+        public void ThenShouldSeeScreen(int expectedScreen)
         {
             var app = (Application)ScenarioContext.Current["application"];
             var screenNumber = app.State.Screen;
-            Assert.AreEqual(p0, screenNumber, "Invalid screen shown");
+            Assert.AreEqual(expectedScreen, screenNumber, "Invalid screen shown");
         }
 
         [AfterScenario]
@@ -49,5 +51,13 @@ namespace WebBasedChat.Specification
             var application = (Application)ScenarioContext.Current["application"];
             Assert.AreEqual(application.State.Name, nick);
         }
+
+        [When(@"User click proceed button")]
+        public void WhenUserClickProceedButton()
+        {
+            var application = (Application)ScenarioContext.Current["application"];
+            application.Proceed();
+        }
+
     }
 }

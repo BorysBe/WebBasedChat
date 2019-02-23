@@ -20,5 +20,10 @@ namespace WebBasedChat.Client.Models
         }
 
         public State State { get; }
+
+        public void Proceed()
+        {
+            State.Screen = 2;
+        }
     }
 }
