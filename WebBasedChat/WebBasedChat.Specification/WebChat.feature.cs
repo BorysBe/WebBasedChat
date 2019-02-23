@@ -71,11 +71,11 @@ namespace WebBasedChat.Specification
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Start application")]
+        [NUnit.Framework.DescriptionAttribute("Start application with Screen 1")]
         [NUnit.Framework.CategoryAttribute("mytag")]
-        public virtual void StartApplication()
+        public virtual void StartApplicationWithScreen1()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Start application", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Start application with Screen 1", null, new string[] {
                         "mytag"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
@@ -86,6 +86,28 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("User see first screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
  testRunner.Then("Should see Screen 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Store nickname")]
+        [NUnit.Framework.CategoryAttribute("mytag")]
+        public virtual void StoreNickname()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Store nickname", null, new string[] {
+                        "mytag"});
+#line 13
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 14
+ testRunner.Given("User run application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 15
+ testRunner.When("User see first screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 16
+ testRunner.And("User put a nickname \'demo-nick\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 17
+ testRunner.Then("Nickname \'demo-nick\' should be stored", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -35,5 +35,19 @@ namespace WebBasedChat.Specification
             var application = (Application)ScenarioContext.Current["application"];
             application.Dispose();
         }
+
+        [When(@"User put a nickname '(.*)'")]
+        public void WhenUserPutANickname(string nick)
+        {
+            var application = (Application)ScenarioContext.Current["application"];
+            application.State.Name = nick;
+        }
+
+        [Then(@"Nickname '(.*)' should be stored")]
+        public void ThenNicknameShouldBeStored(string nick)
+        {
+            var application = (Application)ScenarioContext.Current["application"];
+            Assert.AreEqual(application.State.Name, nick);
+        }
     }
 }
