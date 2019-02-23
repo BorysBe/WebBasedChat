@@ -4,5 +4,6 @@
     {
         public int Screen { get; set; }
         public string Name { get; set; }
+        public bool RoomsAreReady { get; set; }
     }
 }

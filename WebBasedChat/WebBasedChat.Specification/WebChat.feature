@@ -22,3 +22,9 @@ Scenario: Proceed from Screen 1 to Screen 2
 	And User see application window
 	When User click proceed button 
 	Then Should see Screen 2
+
+@mytag
+Scenario: Chat rooms on Screen 2
+	Given User run application
+	And User see Screen 2
+	Then Should see existing chat rooms on Screen 2

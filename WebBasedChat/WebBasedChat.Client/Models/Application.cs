@@ -16,7 +16,6 @@ namespace WebBasedChat.Client.Models
 
         public void Show()
         {
-            State.Screen = 1;
         }
 
         public State State { get; }

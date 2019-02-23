@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using NUnit.Framework.Constraints;
 using TechTalk.SpecFlow;
 using WebBasedChat.Client.Models;
 
@@ -11,7 +10,7 @@ namespace WebBasedChat.Specification
         [Given(@"User run application")]
         public void GivenUserRunApplication()
         {
-            var application = new Application(new State());
+            var application = new Application(new State() { Screen = 1 });
             ScenarioContext.Current["application"] = application;
         }
 
@@ -59,5 +58,21 @@ namespace WebBasedChat.Specification
             application.Proceed();
         }
 
+        [Given(@"User see Screen (.*)")]
+        public void GivenUserSeeScreen(int screenNo)
+        {
+            var app = (Application)ScenarioContext.Current["application"];
+            app.State.Screen = 2;
+            app.Show();
+        }
+
+        [Then(@"Should see existing chat rooms on Screen (.*)")]
+        public void ThenShouldSeeExistingChatRoomsOnScreen(int screenNo)
+        {
+            var app = (Application)ScenarioContext.Current["application"];
+            var screenNumber = app.State.Screen;
+            Assert.AreEqual(screenNo, screenNumber, "Invalid screen shown");
+            Assert.IsTrue(app.State.RoomsAreReady, "Chat rooms are not ready");
+        }
     }
 }
