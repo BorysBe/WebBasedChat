@@ -74,5 +74,13 @@ namespace WebBasedChat.Specification
             Assert.AreEqual(screenNo, screenNumber, "Invalid screen shown");
             Assert.IsTrue(app.State.RoomsAreReady, "Chat rooms are not ready");
         }
+
+        [Given(@"At least one chat room exists")]
+        public void GivenAtLeastOneChatRoomExists()
+        {
+            var app = (Application)ScenarioContext.Current["application"];
+            app.State.RoomsAreReady = true;
+        }
+
     }
 }

@@ -26,5 +26,6 @@ Scenario: Proceed from Screen 1 to Screen 2
 @mytag
 Scenario: Chat rooms on Screen 2
 	Given User run application
+	And At least one chat room exists
 	And User see Screen 2
 	Then Should see existing chat rooms on Screen 2
