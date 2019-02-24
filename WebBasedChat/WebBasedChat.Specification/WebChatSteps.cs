@@ -10,7 +10,9 @@ namespace WebBasedChat.Specification
         [Given(@"User run application")]
         public void GivenUserRunApplication()
         {
-            var application = new Application(new State() { Screen = 1 });
+            var state = new State() { Screen = 1 };
+            ScenarioContext.Current["state"] = state;
+            var application = new Application(state);
             ScenarioContext.Current["application"] = application;
         }
 
@@ -25,8 +27,8 @@ namespace WebBasedChat.Specification
         [Then(@"Should see Screen (.*)")]
         public void ThenShouldSeeScreen(int expectedScreen)
         {
-            var app = (Application)ScenarioContext.Current["application"];
-            var screenNumber = app.State.Screen;
+            var state = (State)ScenarioContext.Current["state"];
+            var screenNumber = state.Screen;
             Assert.AreEqual(expectedScreen, screenNumber, "Invalid screen shown");
         }
 
@@ -40,15 +42,15 @@ namespace WebBasedChat.Specification
         [When(@"User put a nickname '(.*)'")]
         public void WhenUserPutANickname(string nick)
         {
-            var application = (Application)ScenarioContext.Current["application"];
-            application.State.Name = nick;
+            var state = (State)ScenarioContext.Current["state"];
+            state.Name = nick;
         }
 
         [Then(@"Nickname '(.*)' should be stored")]
         public void ThenNicknameShouldBeStored(string nick)
         {
-            var application = (Application)ScenarioContext.Current["application"];
-            Assert.AreEqual(application.State.Name, nick);
+            var state = (State)ScenarioContext.Current["state"];
+            Assert.AreEqual(state.Name, nick);
         }
 
         [When(@"User click proceed button")]
@@ -61,32 +63,33 @@ namespace WebBasedChat.Specification
         [Given(@"User see Screen (.*)")]
         public void GivenUserSeeScreen(int screenNo)
         {
+            var state = (State)ScenarioContext.Current["state"];
+            state.Screen = 2;
             var app = (Application)ScenarioContext.Current["application"];
-            app.State.Screen = 2;
             app.Show();
         }
 
         [Then(@"User see Screen (.*)")]
         public void ThenUserSeeScreen(int screenNo)
         {
-            var app = (Application)ScenarioContext.Current["application"];
-            Assert.AreEqual(screenNo, app.State.Screen, $"User cannot see {screenNo}");
+            var state = (State)ScenarioContext.Current["state"];
+            Assert.AreEqual(screenNo, state.Screen, $"User cannot see {screenNo}");
         }
 
         [Then(@"Should see existing chat rooms on Screen (.*)")]
         public void ThenShouldSeeExistingChatRoomsOnScreen(int screenNo)
         {
-            var app = (Application)ScenarioContext.Current["application"];
-            var screenNumber = app.State.Screen;
+            var state = (State)ScenarioContext.Current["state"];
+            var screenNumber = state.Screen;
             Assert.AreEqual(screenNo, screenNumber, "Invalid screen shown");
-            Assert.IsTrue(app.State.RoomsAreReady, "Chat rooms are not ready");
+            Assert.IsTrue(state.RoomsAreReady, "Chat rooms are not ready");
         }
 
         [Given(@"At least one chat room exists")]
         public void GivenAtLeastOneChatRoomExists()
         {
-            var app = (Application)ScenarioContext.Current["application"];
-            app.State.RoomsAreReady = true;
+            var state = (State)ScenarioContext.Current["state"];
+            state.RoomsAreReady = true;
         }
 
         [When(@"User click ""(.*)"" button")]
@@ -99,23 +102,22 @@ namespace WebBasedChat.Specification
         [Then(@"Chat room is created")]
         public void ThenChatRoomIsCreated()
         {
-            var app = (Application)ScenarioContext.Current["application"];
-            Assert.IsTrue(app.State.RoomsAreReady, "Chat rooms are not ready");
+            var state = (State)ScenarioContext.Current["state"];
+            Assert.IsTrue(state.RoomsAreReady, "Chat rooms are not ready");
         }
 
         [Given(@"User select chat room (.*)")]
         public void GivenUserSelectChatRoom(int roomNo)
         {
-            var app = (Application) ScenarioContext.Current["application"];
-            app.State.SelectedChatRoom = roomNo;
+            var state = (State)ScenarioContext.Current["state"];
+            state.SelectedChatRoom = roomNo;
         }
 
         [Then(@"User join selected chat room")]
         public void ThenUserJoinSelectedChatRoom()
         {
-            var app = (Application)ScenarioContext.Current["application"];
-            Assert.AreEqual(app.State.SelectedChatRoom, app.State.JoinedChatRoom, "Did not join selected chat room");
+            var state = (State)ScenarioContext.Current["state"];
+            Assert.AreEqual(state.SelectedChatRoom, state.JoinedChatRoom, "Did not join selected chat room");
         }
-
     }
 }

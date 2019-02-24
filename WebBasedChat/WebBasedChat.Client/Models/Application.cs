@@ -18,8 +18,6 @@ namespace WebBasedChat.Client.Models
         {
         }
 
-        public State State { get; }
-
         public void Proceed()
         {
             State.Screen = 2;
@@ -38,5 +36,7 @@ namespace WebBasedChat.Client.Models
                 State.RoomsAreReady = true;
             }
         }
+
+        private State State { get; }
     }
 }
