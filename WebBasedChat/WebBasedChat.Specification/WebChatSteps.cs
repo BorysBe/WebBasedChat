@@ -119,5 +119,26 @@ namespace WebBasedChat.Specification
             var state = (State)ScenarioContext.Current["state"];
             Assert.AreEqual(state.SelectedChatRoom, state.JoinedChatRoom, "Did not join selected chat room");
         }
+
+        [Given(@"User join selected chat room")]
+        public void GivenUserJoinSelectedChatRoom()
+        {
+        }
+
+        [Given(@"""(.*)"" join chat room (.*)")]
+        public void GivenJoinChatRoom(string p0, int p1)
+        {
+        }
+
+        [When(@"User enter ""(.*)"" message")]
+        public void WhenUserEnterMessage(string message)
+        {
+        }
+
+        [Then(@"""(.*)"" was send to ""(.*)""")]
+        public void ThenWasSendTo(string message, string userName)
+        {
+            Assert.Fail("assertion empty");
+        }
     }
 }

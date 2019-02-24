@@ -47,3 +47,14 @@ Scenario: Join new room
 	When User click "Join" button
 	Then User join selected chat room 
 	And User see Screen 3
+
+@mytag
+Scenario: Send message to roommate
+	Given User run application
+	And User join selected chat room 
+	And "User 2" join chat room 1
+	And "User 3" join chat room 1
+	When User enter "some text" message
+	And User click "Submit" button
+	Then "some text" was send to "User 2"
+	And "some text" was send to "User 3"
