@@ -66,6 +66,13 @@ namespace WebBasedChat.Specification
             app.Show();
         }
 
+        [Then(@"User see Screen (.*)")]
+        public void ThenUserSeeScreen(int screenNo)
+        {
+            var app = (Application)ScenarioContext.Current["application"];
+            Assert.AreEqual(screenNo, app.State.Screen, $"User cannot see {screenNo}");
+        }
+
         [Then(@"Should see existing chat rooms on Screen (.*)")]
         public void ThenShouldSeeExistingChatRoomsOnScreen(int screenNo)
         {
@@ -80,6 +87,34 @@ namespace WebBasedChat.Specification
         {
             var app = (Application)ScenarioContext.Current["application"];
             app.State.RoomsAreReady = true;
+        }
+
+        [When(@"User click ""(.*)"" button")]
+        public void WhenUserClickButton(string buttonName)
+        {
+            var app = (Application)ScenarioContext.Current["application"];
+            app.ExecuteOn(buttonName);
+        }
+
+        [Then(@"Chat room is created")]
+        public void ThenChatRoomIsCreated()
+        {
+            var app = (Application)ScenarioContext.Current["application"];
+            Assert.IsTrue(app.State.RoomsAreReady, "Chat rooms are not ready");
+        }
+
+        [Given(@"User select chat room (.*)")]
+        public void GivenUserSelectChatRoom(int roomNo)
+        {
+            var app = (Application) ScenarioContext.Current["application"];
+            app.State.SelectedChatRoom = roomNo;
+        }
+
+        [Then(@"User join selected chat room")]
+        public void ThenUserJoinSelectedChatRoom()
+        {
+            var app = (Application)ScenarioContext.Current["application"];
+            Assert.AreEqual(app.State.SelectedChatRoom, app.State.JoinedChatRoom, "Did not join selected chat room");
         }
 
     }

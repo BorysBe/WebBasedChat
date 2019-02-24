@@ -24,5 +24,19 @@ namespace WebBasedChat.Client.Models
         {
             State.Screen = 2;
         }
+
+        public void ExecuteOn(string buttonName)
+        {
+            if (buttonName == "Join")
+            {
+                State.JoinedChatRoom = State.SelectedChatRoom;
+                State.Screen = 3;
+            }
+
+            if (buttonName == "Create new room")
+            {
+                State.RoomsAreReady = true;
+            }
+        }
     }
 }

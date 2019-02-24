@@ -24,8 +24,26 @@ Scenario: Proceed from Screen 1 to Screen 2
 	Then Should see Screen 2
 
 @mytag
-Scenario: Chat rooms on Screen 2
+Scenario: See chat rooms on Screen 2
 	Given User run application
 	And At least one chat room exists
 	And User see Screen 2
 	Then Should see existing chat rooms on Screen 2
+
+@mytag
+Scenario: Create new room
+	Given User run application
+	And User see Screen 2
+	And At least one chat room exists
+	When User click "Create new room" button
+	Then Chat room is created
+
+@mytag
+Scenario: Join new room
+	Given User run application
+	And User see Screen 2
+	And At least one chat room exists
+	And User select chat room 1
+	When User click "Join" button
+	Then User join selected chat room 
+	And User see Screen 3
