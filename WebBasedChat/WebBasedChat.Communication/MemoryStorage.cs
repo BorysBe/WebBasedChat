@@ -24,13 +24,20 @@ namespace WebBasedChat.Communication
             }
         }
 
-        public string Last(int userId)
+        public string Last(int userId, int idxOffset)
         {
             string result;
             locker.EnterReadLock();
             try
             {
-                result = _list.LastOrDefault(x => x.Item1 != userId)?.Item2;
+                if (idxOffset == 0)
+                {
+                    result = _list.LastOrDefault(x => x.Item1 != userId)?.Item2;
+                }
+                else
+                {
+                    result = _list.ElementAt(_list.Count - idxOffset)?.Item2;
+                }
             }
             finally
             {

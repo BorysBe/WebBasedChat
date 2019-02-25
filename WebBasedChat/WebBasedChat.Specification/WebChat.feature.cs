@@ -245,6 +245,301 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Get last 30 messages")]
+        [NUnit.Framework.CategoryAttribute("As-a-User-I-want-to-see-last-30-previous-messages-in-current-room-with-authors-an" +
+            "d-timestamp")]
+        public virtual void GetLast30Messages()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get last 30 messages", null, new string[] {
+                        "As-a-User-I-want-to-see-last-30-previous-messages-in-current-room-with-authors-an" +
+                            "d-timestamp"});
+#line 64
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 65
+ testRunner.Given("User run application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 66
+ testRunner.And("User select chat room 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 67
+ testRunner.And("User click \"Join\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 68
+ testRunner.And("User 2 join chat room 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 69
+ testRunner.And("User 3 join chat room 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "message"});
+            table1.AddRow(new string[] {
+                        "Message 1"});
+            table1.AddRow(new string[] {
+                        "Message 2"});
+            table1.AddRow(new string[] {
+                        "Message 3"});
+            table1.AddRow(new string[] {
+                        "Message 4"});
+            table1.AddRow(new string[] {
+                        "Message 5"});
+            table1.AddRow(new string[] {
+                        "Message 6"});
+            table1.AddRow(new string[] {
+                        "Message 7"});
+            table1.AddRow(new string[] {
+                        "Message 8"});
+            table1.AddRow(new string[] {
+                        "Message 9"});
+            table1.AddRow(new string[] {
+                        "Message 10"});
+            table1.AddRow(new string[] {
+                        "Message 11"});
+            table1.AddRow(new string[] {
+                        "Message 12"});
+            table1.AddRow(new string[] {
+                        "Message 13"});
+            table1.AddRow(new string[] {
+                        "Message 14"});
+            table1.AddRow(new string[] {
+                        "Message 15"});
+#line 70
+ testRunner.And("User 2 submit messages", ((string)(null)), table1, "And ");
+#line 87
+ testRunner.And("User enter \"some text\" message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 88
+ testRunner.And("User click \"Submit\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "message"});
+            table2.AddRow(new string[] {
+                        "Message 1"});
+            table2.AddRow(new string[] {
+                        "Message 2"});
+            table2.AddRow(new string[] {
+                        "Message 3"});
+            table2.AddRow(new string[] {
+                        "Message 4"});
+            table2.AddRow(new string[] {
+                        "Message 5"});
+            table2.AddRow(new string[] {
+                        "Message 6"});
+            table2.AddRow(new string[] {
+                        "Message 7"});
+            table2.AddRow(new string[] {
+                        "Message 8"});
+            table2.AddRow(new string[] {
+                        "Message 9"});
+            table2.AddRow(new string[] {
+                        "Message 10"});
+            table2.AddRow(new string[] {
+                        "Message 11"});
+            table2.AddRow(new string[] {
+                        "Message 12"});
+            table2.AddRow(new string[] {
+                        "Message 13"});
+            table2.AddRow(new string[] {
+                        "Message 14"});
+            table2.AddRow(new string[] {
+                        "Message 15"});
+#line 89
+ testRunner.And("User 3 submit messages", ((string)(null)), table2, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "message"});
+            table3.AddRow(new string[] {
+                        "Message 2"});
+            table3.AddRow(new string[] {
+                        "Message 3"});
+            table3.AddRow(new string[] {
+                        "Message 4"});
+            table3.AddRow(new string[] {
+                        "Message 5"});
+            table3.AddRow(new string[] {
+                        "Message 6"});
+            table3.AddRow(new string[] {
+                        "Message 7"});
+            table3.AddRow(new string[] {
+                        "Message 8"});
+            table3.AddRow(new string[] {
+                        "Message 9"});
+            table3.AddRow(new string[] {
+                        "Message 10"});
+            table3.AddRow(new string[] {
+                        "Message 11"});
+            table3.AddRow(new string[] {
+                        "Message 12"});
+            table3.AddRow(new string[] {
+                        "Message 13"});
+            table3.AddRow(new string[] {
+                        "Message 14"});
+            table3.AddRow(new string[] {
+                        "Message 15"});
+            table3.AddRow(new string[] {
+                        "some text"});
+            table3.AddRow(new string[] {
+                        "Message 1"});
+            table3.AddRow(new string[] {
+                        "Message 2"});
+            table3.AddRow(new string[] {
+                        "Message 3"});
+            table3.AddRow(new string[] {
+                        "Message 4"});
+            table3.AddRow(new string[] {
+                        "Message 5"});
+            table3.AddRow(new string[] {
+                        "Message 6"});
+            table3.AddRow(new string[] {
+                        "Message 7"});
+            table3.AddRow(new string[] {
+                        "Message 8"});
+            table3.AddRow(new string[] {
+                        "Message 9"});
+            table3.AddRow(new string[] {
+                        "Message 10"});
+            table3.AddRow(new string[] {
+                        "Message 11"});
+            table3.AddRow(new string[] {
+                        "Message 12"});
+            table3.AddRow(new string[] {
+                        "Message 13"});
+            table3.AddRow(new string[] {
+                        "Message 14"});
+            table3.AddRow(new string[] {
+                        "Message 15"});
+#line 107
+ testRunner.Then("Following messages was send to user 1", ((string)(null)), table3, "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "message"});
+            table4.AddRow(new string[] {
+                        "Message 2"});
+            table4.AddRow(new string[] {
+                        "Message 3"});
+            table4.AddRow(new string[] {
+                        "Message 4"});
+            table4.AddRow(new string[] {
+                        "Message 5"});
+            table4.AddRow(new string[] {
+                        "Message 6"});
+            table4.AddRow(new string[] {
+                        "Message 7"});
+            table4.AddRow(new string[] {
+                        "Message 8"});
+            table4.AddRow(new string[] {
+                        "Message 9"});
+            table4.AddRow(new string[] {
+                        "Message 10"});
+            table4.AddRow(new string[] {
+                        "Message 11"});
+            table4.AddRow(new string[] {
+                        "Message 12"});
+            table4.AddRow(new string[] {
+                        "Message 13"});
+            table4.AddRow(new string[] {
+                        "Message 14"});
+            table4.AddRow(new string[] {
+                        "Message 15"});
+            table4.AddRow(new string[] {
+                        "some text"});
+            table4.AddRow(new string[] {
+                        "Message 1"});
+            table4.AddRow(new string[] {
+                        "Message 2"});
+            table4.AddRow(new string[] {
+                        "Message 3"});
+            table4.AddRow(new string[] {
+                        "Message 4"});
+            table4.AddRow(new string[] {
+                        "Message 5"});
+            table4.AddRow(new string[] {
+                        "Message 6"});
+            table4.AddRow(new string[] {
+                        "Message 7"});
+            table4.AddRow(new string[] {
+                        "Message 8"});
+            table4.AddRow(new string[] {
+                        "Message 9"});
+            table4.AddRow(new string[] {
+                        "Message 10"});
+            table4.AddRow(new string[] {
+                        "Message 11"});
+            table4.AddRow(new string[] {
+                        "Message 12"});
+            table4.AddRow(new string[] {
+                        "Message 13"});
+            table4.AddRow(new string[] {
+                        "Message 14"});
+            table4.AddRow(new string[] {
+                        "Message 15"});
+#line 140
+ testRunner.And("Following messages was send to user 2", ((string)(null)), table4, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                        "message"});
+            table5.AddRow(new string[] {
+                        "Message 2"});
+            table5.AddRow(new string[] {
+                        "Message 3"});
+            table5.AddRow(new string[] {
+                        "Message 4"});
+            table5.AddRow(new string[] {
+                        "Message 5"});
+            table5.AddRow(new string[] {
+                        "Message 6"});
+            table5.AddRow(new string[] {
+                        "Message 7"});
+            table5.AddRow(new string[] {
+                        "Message 8"});
+            table5.AddRow(new string[] {
+                        "Message 9"});
+            table5.AddRow(new string[] {
+                        "Message 10"});
+            table5.AddRow(new string[] {
+                        "Message 11"});
+            table5.AddRow(new string[] {
+                        "Message 12"});
+            table5.AddRow(new string[] {
+                        "Message 13"});
+            table5.AddRow(new string[] {
+                        "Message 14"});
+            table5.AddRow(new string[] {
+                        "Message 15"});
+            table5.AddRow(new string[] {
+                        "some text"});
+            table5.AddRow(new string[] {
+                        "Message 1"});
+            table5.AddRow(new string[] {
+                        "Message 2"});
+            table5.AddRow(new string[] {
+                        "Message 3"});
+            table5.AddRow(new string[] {
+                        "Message 4"});
+            table5.AddRow(new string[] {
+                        "Message 5"});
+            table5.AddRow(new string[] {
+                        "Message 6"});
+            table5.AddRow(new string[] {
+                        "Message 7"});
+            table5.AddRow(new string[] {
+                        "Message 8"});
+            table5.AddRow(new string[] {
+                        "Message 9"});
+            table5.AddRow(new string[] {
+                        "Message 10"});
+            table5.AddRow(new string[] {
+                        "Message 11"});
+            table5.AddRow(new string[] {
+                        "Message 12"});
+            table5.AddRow(new string[] {
+                        "Message 13"});
+            table5.AddRow(new string[] {
+                        "Message 14"});
+            table5.AddRow(new string[] {
+                        "Message 15"});
+#line 173
+ testRunner.And("Following messages was send to user 3", ((string)(null)), table5, "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

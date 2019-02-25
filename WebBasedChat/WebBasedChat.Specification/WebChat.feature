@@ -59,3 +59,146 @@ Scenario: Send message to roommate
 	And User click "Submit" button
 	Then "some text" was send to user 2
 	And "some text" was send to user 3
+
+@As-a-User-I-want-to-see-last-30-previous-messages-in-current-room-with-authors-and-timestamp
+Scenario: Get last 30 messages
+	Given User run application
+	And User select chat room 1
+	And User click "Join" button
+	And User 2 join chat room 1
+	And User 3 join chat room 1
+	And User 2 submit messages
+	| message |
+	| Message 1 |
+	| Message 2 |
+	| Message 3 |
+	| Message 4 |
+	| Message 5 |
+	| Message 6 |
+	| Message 7 |
+	| Message 8 |
+	| Message 9 |
+	| Message 10 |
+	| Message 11 |
+	| Message 12 |
+	| Message 13 |
+	| Message 14 |
+	| Message 15 |
+	And User enter "some text" message
+	And User click "Submit" button
+	And User 3 submit messages
+	| message |
+	| Message 1 |
+	| Message 2 |
+	| Message 3 |
+	| Message 4 |
+	| Message 5 |
+	| Message 6 |
+	| Message 7 |
+	| Message 8 |
+	| Message 9 |
+	| Message 10 |
+	| Message 11 |
+	| Message 12 |
+	| Message 13 |
+	| Message 14 |
+	| Message 15 |
+
+	Then Following messages was send to user 1
+	| message |
+	| Message 2 |
+	| Message 3 |
+	| Message 4 |
+	| Message 5 |
+	| Message 6 |
+	| Message 7 |
+	| Message 8 |
+	| Message 9 |
+	| Message 10 |
+	| Message 11 |
+	| Message 12 |
+	| Message 13 |
+	| Message 14 |
+	| Message 15 |
+	| some text |
+	| Message 1 |
+	| Message 2 |
+	| Message 3 |
+	| Message 4 |
+	| Message 5 |
+	| Message 6 |
+	| Message 7 |
+	| Message 8 |
+	| Message 9 |
+	| Message 10 |
+	| Message 11 |
+	| Message 12 |
+	| Message 13 |
+	| Message 14 |
+	| Message 15 |
+	
+	And Following messages was send to user 2
+	| message |
+	| Message 2 |
+	| Message 3 |
+	| Message 4 |
+	| Message 5 |
+	| Message 6 |
+	| Message 7 |
+	| Message 8 |
+	| Message 9 |
+	| Message 10 |
+	| Message 11 |
+	| Message 12 |
+	| Message 13 |
+	| Message 14 |
+	| Message 15 |
+	| some text |
+	| Message 1 |
+	| Message 2 |
+	| Message 3 |
+	| Message 4 |
+	| Message 5 |
+	| Message 6 |
+	| Message 7 |
+	| Message 8 |
+	| Message 9 |
+	| Message 10 |
+	| Message 11 |
+	| Message 12 |
+	| Message 13 |
+	| Message 14 |
+	| Message 15 |
+	
+	And Following messages was send to user 3
+	| message |
+	| Message 2 |
+	| Message 3 |
+	| Message 4 |
+	| Message 5 |
+	| Message 6 |
+	| Message 7 |
+	| Message 8 |
+	| Message 9 |
+	| Message 10 |
+	| Message 11 |
+	| Message 12 |
+	| Message 13 |
+	| Message 14 |
+	| Message 15 |
+	| some text |
+	| Message 1 |
+	| Message 2 |
+	| Message 3 |
+	| Message 4 |
+	| Message 5 |
+	| Message 6 |
+	| Message 7 |
+	| Message 8 |
+	| Message 9 |
+	| Message 10 |
+	| Message 11 |
+	| Message 12 |
+	| Message 13 |
+	| Message 14 |
+	| Message 15 |

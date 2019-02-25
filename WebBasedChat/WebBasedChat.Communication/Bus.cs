@@ -16,9 +16,9 @@
             this._storage.Add(message, _userId);
         }
 
-        public string Last()
+        public string Last(int idx = 0)
         {
-            return this._storage.Last(_userId);
+            return this._storage.Last(_userId, idx);
         }
     }
 }

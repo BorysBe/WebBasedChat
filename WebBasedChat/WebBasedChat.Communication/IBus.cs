@@ -3,6 +3,6 @@
     public interface IBus
     {
         void Send(string message);
-        string Last();
+        string Last(int idx = 0);
     }
 }

@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Linq;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 using WebBasedChat.Client.Models;
 using WebBasedChat.Communication;
@@ -11,7 +12,7 @@ namespace WebBasedChat.Specification
         [Given(@"User run application")]
         public void GivenUserRunApplication()
         {
-            CompositionRoot();
+            CompositionRoot(1);
         }
 
         [Given(@"User (.*) run application")]
@@ -20,14 +21,14 @@ namespace WebBasedChat.Specification
             CompositionRoot(userId);
         }
 
-        private static void CompositionRoot(int? userId = null)
+        private static void CompositionRoot(int userId = 1)
         {
             var state = new State()
             {
                 Screen = 1
             };
             ScenarioContext.Current["state" + userId] = state;
-            var bus = new Bus(new MemoryStorage(), userId ?? 1);
+            var bus = new Bus(new MemoryStorage(), userId);
             ScenarioContext.Current["bus" + userId] = bus;
             var application = new Application(
                 state,
@@ -39,14 +40,14 @@ namespace WebBasedChat.Specification
         [When(@"User see application window")]
         public void WhenUserSeeApplicationWindow()
         {
-            var app = (Application)ScenarioContext.Current["application"];
+            var app = (Application)ScenarioContext.Current["application1"];
             app.Show();
         }
 
         [Then(@"Should see Screen (.*)")]
         public void ThenShouldSeeScreen(int expectedScreen)
         {
-            var state = (State)ScenarioContext.Current["state"];
+            var state = (State)ScenarioContext.Current["state1"];
             var screenNumber = state.Screen;
             Assert.AreEqual(expectedScreen, screenNumber, "Invalid screen shown");
         }
@@ -60,14 +61,14 @@ namespace WebBasedChat.Specification
         [AfterScenario]
         public void TearDown()
         {
-            var application = (Application)ScenarioContext.Current["application"];
+            var application = (Application)ScenarioContext.Current["application1"];
             application.Dispose();
         }
 
         [When(@"User put a nickname '(.*)'")]
         public void WhenUserPutANickname(string nick)
         {
-            var state = (State)ScenarioContext.Current["state"];
+            var state = (State)ScenarioContext.Current["state1"];
             state.Name = nick;
         }
 
@@ -81,37 +82,37 @@ namespace WebBasedChat.Specification
         [Then(@"Nickname '(.*)' should be stored")]
         public void ThenNicknameShouldBeStored(string nick)
         {
-            var state = (State)ScenarioContext.Current["state"];
+            var state = (State)ScenarioContext.Current["state1"];
             Assert.AreEqual(state.Name, nick);
         }
 
         [When(@"User click proceed button")]
         public void WhenUserClickProceedButton()
         {
-            var application = (Application)ScenarioContext.Current["application"];
+            var application = (Application)ScenarioContext.Current["application1"];
             application.Proceed();
         }
 
         [Given(@"User see Screen (.*)")]
         public void GivenUserSeeScreen(int screenNo)
         {
-            var state = (State)ScenarioContext.Current["state"];
+            var state = (State)ScenarioContext.Current["state1"];
             state.Screen = 2;
-            var app = (Application)ScenarioContext.Current["application"];
+            var app = (Application)ScenarioContext.Current["application1"];
             app.Show();
         }
 
         [Then(@"User see Screen (.*)")]
         public void ThenUserSeeScreen(int screenNo)
         {
-            var state = (State)ScenarioContext.Current["state"];
+            var state = (State)ScenarioContext.Current["state1"];
             Assert.AreEqual(screenNo, state.Screen, $"User cannot see {screenNo}");
         }
 
         [Then(@"Should see existing chat rooms on Screen (.*)")]
         public void ThenShouldSeeExistingChatRoomsOnScreen(int screenNo)
         {
-            var state = (State)ScenarioContext.Current["state"];
+            var state = (State)ScenarioContext.Current["state1"];
             var screenNumber = state.Screen;
             Assert.AreEqual(screenNo, screenNumber, "Invalid screen shown");
             Assert.IsTrue(state.RoomsAreReady, "Chat rooms are not ready");
@@ -120,7 +121,7 @@ namespace WebBasedChat.Specification
         [Given(@"At least one chat room exists")]
         public void GivenAtLeastOneChatRoomExists()
         {
-            var state = (State)ScenarioContext.Current["state"];
+            var state = (State)ScenarioContext.Current["state1"];
             state.RoomsAreReady = true;
         }
 
@@ -128,35 +129,35 @@ namespace WebBasedChat.Specification
         [When(@"User click ""(.*)"" button")]
         public void WhenUserClickButton(string buttonName)
         {
-            var app = (Application)ScenarioContext.Current["application"];
+            var app = (Application)ScenarioContext.Current["application1"];
             app.ExecuteOn(buttonName);
         }
 
         [Given(@"User '(.*)' click '(.*)' button")]
         public void GivenOtherUserClickButton(int userId, string buttonName)
         {
-            var app = (Application)ScenarioContext.Current["application"];
+            var app = (Application)ScenarioContext.Current["application1"];
             app.ExecuteOn(buttonName);
         }
 
         [Then(@"Chat room is created")]
         public void ThenChatRoomIsCreated()
         {
-            var state = (State)ScenarioContext.Current["state"];
+            var state = (State)ScenarioContext.Current["state1"];
             Assert.IsTrue(state.RoomsAreReady, "Chat rooms are not ready");
         }
 
         [Given(@"User select chat room (.*)")]
         public void GivenUserSelectChatRoom(int roomNo)
         {
-            var state = (State)ScenarioContext.Current["state"];
+            var state = (State)ScenarioContext.Current["state1"];
             state.SelectedChatRoom = roomNo;
         }
 
         [Then(@"User join selected chat room")]
         public void ThenUserJoinSelectedChatRoom()
         {
-            var state = (State)ScenarioContext.Current["state"];
+            var state = (State)ScenarioContext.Current["state1"];
             Assert.AreEqual(state.SelectedChatRoom, state.JoinedChatRoom, "Did not join selected chat room");
         }
 
@@ -168,11 +169,23 @@ namespace WebBasedChat.Specification
             GivenOtherUserClickButton(userId, "Join");
         }
 
+        [Given(@"User enter ""(.*)"" message")]
         [When(@"User enter ""(.*)"" message")]
-        public void WhenUserEnterMessage(string message)
+        public void UserEnterMessage(string message)
         {
-            var application = (Application)ScenarioContext.Current["application"];
+            var application = (Application)ScenarioContext.Current["application1"];
             application.Enter(message);
+        }
+
+        [Given(@"User (.*) submit messages")]
+        public void UserSubmitMessages(int userId, Table table)
+        {
+            var application = (Application)ScenarioContext.Current["application" + userId];
+            foreach (var row in table.Rows)
+            {
+                application.Enter(row["message"]);
+                application.ExecuteOn("Submit");
+            }
         }
 
         [Then(@"""(.*)"" was send to user (.*)")]
@@ -180,6 +193,18 @@ namespace WebBasedChat.Specification
         {
             var bus = (IBus)ScenarioContext.Current["bus" + userId];
             Assert.AreEqual(message, bus.Last());
+            TearDown(userId);
+        }
+
+        [Then(@"Following messages was send to user (.*)")]
+        public void ThenFollowingMessagesWasSendToUser(int userId, Table table)
+        {
+            var bus = (IBus)ScenarioContext.Current["bus" + userId];
+            int minusId = 30;
+            foreach (var row in table.Rows)
+            {
+                Assert.AreEqual(row["message"], bus.Last(minusId--));
+            }
             TearDown(userId);
         }
     }
