@@ -1,14 +1,18 @@
 ﻿using System;
+using System.Linq;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using WebBasedChat.Client.Models;
 using WebBasedChat.Communication;
+using WebBasedChat.Server;
 
 namespace WebBasedChat.Specification
 {
     [Binding]
     public class WebChatSteps
     {
+        private static Server.Server _server;
+
         [Given(@"User run application")]
         public void GivenUserRunApplication()
         {
@@ -28,12 +32,14 @@ namespace WebBasedChat.Specification
                 Screen = 1
             };
             ScenarioContext.Current["state" + userId] = state;
-            var bus = new Bus(new MemoryStorage(), userId);
+            var memoryStorage = new MemoryStorage();
+            var bus = new Bus(memoryStorage, userId);
             ScenarioContext.Current["bus" + userId] = bus;
             var application = new Application(
                 state,
                 bus);
             ScenarioContext.Current["application" + userId] = application;
+            _server = new Server.Server(memoryStorage);
         }
 
         [Given(@"User see application window")]
@@ -63,6 +69,7 @@ namespace WebBasedChat.Specification
         {
             var application = (Application)ScenarioContext.Current["application1"];
             application.Dispose();
+            _server?.Dispose();
         }
 
         [When(@"User put a nickname '(.*)'")]
@@ -79,7 +86,7 @@ namespace WebBasedChat.Specification
             state.Name = nick;
         }
 
-        [Then(@"Nickname '(.*)' should be stored")]
+        [Then(@"Nickname '(.*)' should be stored in application")]
         public void ThenNicknameShouldBeStored(string nick)
         {
             var state = (State)ScenarioContext.Current["state1"];
@@ -192,7 +199,7 @@ namespace WebBasedChat.Specification
         public void ThenWasSendTo(string message, int userId)
         {
             var bus = (IBus)ScenarioContext.Current["bus" + userId];
-            Assert.AreEqual(message, bus.Last().Item1);
+            Assert.AreEqual(message, bus.Last().ElementAt(0).Item1);
             TearDown(userId);
         }
 
@@ -201,12 +208,22 @@ namespace WebBasedChat.Specification
         {
             var bus = (IBus)ScenarioContext.Current["bus" + userId];
             int minusId = 30;
+            var tuples = bus.Last(minusId--);
+            int rowNo = 0;
             foreach (var row in table.Rows)
             {
-                var tuple = bus.Last(minusId--);
-                Assert.AreEqual(row["message"], tuple.Item1);
-                Assert.AreEqual(row["nick"], MapIdToNickname(tuple));
-                Assert.IsInstanceOf<DateTime>(tuple.Item3);
+                try
+                {
+                    Assert.AreEqual(row["message"], tuples.ElementAt(rowNo).Item1);
+                    Assert.AreEqual(row["nick"], MapIdToNickname(tuples.ElementAt(rowNo)));
+                    Assert.IsInstanceOf<DateTime>(tuples.ElementAt(rowNo).Item3);
+                    rowNo++;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
             }
             TearDown(userId);
         }

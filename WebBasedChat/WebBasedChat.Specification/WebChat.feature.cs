@@ -107,7 +107,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 16
  testRunner.And("User put a nickname \'demo-nick\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 17
- testRunner.Then("Nickname \'demo-nick\' should be stored", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Nickname \'demo-nick\' should be stored in application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

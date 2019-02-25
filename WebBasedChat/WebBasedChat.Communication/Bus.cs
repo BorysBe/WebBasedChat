@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using WebBasedChat.Server;
 
 namespace WebBasedChat.Communication
 {
@@ -18,9 +20,9 @@ namespace WebBasedChat.Communication
             this._storage.Add(message, _userId);
         }
 
-        public Tuple<string, int, DateTime> Last(int idxOffset = 0)
+        public IEnumerable<Tuple<string, int, DateTime>> Last(int idxOffset = 0)
         {
-            return this._storage.Last(_userId, idxOffset);
+            return _storage.Last(_userId, idxOffset);
         }
     }
 }

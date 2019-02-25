@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 
-namespace WebBasedChat.Communication
+namespace WebBasedChat.Server
 {
     public interface IStorage
     {
@@ -12,6 +13,6 @@ namespace WebBasedChat.Communication
         /// <param name="userId">id of requestor</param>
         /// <param name="idxOffset">offset from last message</param>
         /// <returns>message row</returns>
-        Tuple<string, int, DateTime> Last(int userId, int idxOffset);
+        List<Tuple<string, int, DateTime>> Last(int userId, int idxOffset);
     }
 }

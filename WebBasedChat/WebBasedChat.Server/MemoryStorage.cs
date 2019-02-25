@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 
-namespace WebBasedChat.Communication
+namespace WebBasedChat.Server
 {
     public class MemoryStorage : IStorage
     {
@@ -24,19 +23,25 @@ namespace WebBasedChat.Communication
             }
         }
 
-        public Tuple<string, int, DateTime> Last(int userId, int idxOffset)
+        public List<Tuple<string, int, DateTime>> Last(int userId, int idxOffset)
         {
             Tuple<string, int, DateTime> result;
             locker.EnterReadLock();
+            var results = new List<Tuple<string, int, DateTime>>();
             try
             {
                 if (idxOffset == 0)
                 {
                     result = _list.LastOrDefault(x => x.Item2 != userId);
+                    results.Add(result);
                 }
                 else
                 {
-                    result = _list.ElementAt(_list.Count - idxOffset);
+                    for (int idx = idxOffset; idx > 0; idx--)
+                    {
+                        result = _list.ElementAt(_list.Count - idx);
+                        results.Add(result);
+                    }
                 }
             }
             finally
@@ -44,7 +49,7 @@ namespace WebBasedChat.Communication
                 locker.ExitReadLock();
             }
 
-            return result;
+           return results;
         }
     }
 }

@@ -80,6 +80,10 @@
       <Project>{FBF3581C-67A1-4587-9EF8-52C91D51CA17}</Project>
       <Name>WebBasedChat.Communication</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebBasedChat.Server\WebBasedChat.Server.csproj">
+      <Project>{A38BC843-95BB-4B14-88A6-C1905B6FE7EB}</Project>
+      <Name>WebBasedChat.Server</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

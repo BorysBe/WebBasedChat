@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBasedChat.Client", "WebB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBasedChat.Communication", "WebBasedChat.Communication\WebBasedChat.Communication.csproj", "{FBF3581C-67A1-4587-9EF8-52C91D51CA17}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBasedChat.Server", "WebBasedChat.Server\WebBasedChat.Server.csproj", "{A38BC843-95BB-4B14-88A6-C1905B6FE7EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{FBF3581C-67A1-4587-9EF8-52C91D51CA17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBF3581C-67A1-4587-9EF8-52C91D51CA17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBF3581C-67A1-4587-9EF8-52C91D51CA17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A38BC843-95BB-4B14-88A6-C1905B6FE7EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A38BC843-95BB-4B14-88A6-C1905B6FE7EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A38BC843-95BB-4B14-88A6-C1905B6FE7EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A38BC843-95BB-4B14-88A6-C1905B6FE7EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

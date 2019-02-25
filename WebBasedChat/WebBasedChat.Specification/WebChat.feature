@@ -14,7 +14,7 @@ Scenario: Store nickname
 	Given User run application
 	When User see application window
 	And User put a nickname 'demo-nick'
-	Then Nickname 'demo-nick' should be stored
+	Then Nickname 'demo-nick' should be stored in application
 
 @As-a-User-I-want-to-click-proceed-button-on-Screen-1-so-that-I-can-see-Screen-2
 Scenario: Proceed from Screen 1 to Screen 2
