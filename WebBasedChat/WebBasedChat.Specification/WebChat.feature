@@ -51,10 +51,11 @@ Scenario: Join new room
 @mytag
 Scenario: Send message to roommate
 	Given User run application
-	And User join selected chat room 
-	And "User 2" join chat room 1
-	And "User 3" join chat room 1
+	And User select chat room 1
+	And User click "Join" button
+	And User 2 join chat room 1
+	And User 3 join chat room 1
 	When User enter "some text" message
 	And User click "Submit" button
-	Then "some text" was send to "User 2"
-	And "some text" was send to "User 3"
+	Then "some text" was send to user 2
+	And "some text" was send to user 3

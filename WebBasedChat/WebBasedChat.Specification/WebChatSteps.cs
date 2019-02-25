@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using TechTalk.SpecFlow;
 using WebBasedChat.Client.Models;
+using WebBasedChat.Communication;
 
 namespace WebBasedChat.Specification
 {
@@ -10,10 +11,28 @@ namespace WebBasedChat.Specification
         [Given(@"User run application")]
         public void GivenUserRunApplication()
         {
-            var state = new State() { Screen = 1 };
-            ScenarioContext.Current["state"] = state;
-            var application = new Application(state);
-            ScenarioContext.Current["application"] = application;
+            CompositionRoot();
+        }
+
+        [Given(@"User (.*) run application")]
+        public void GivenOtherUserRunApplication(int userId)
+        {
+            CompositionRoot(userId);
+        }
+
+        private static void CompositionRoot(int? userId = null)
+        {
+            var state = new State()
+            {
+                Screen = 1
+            };
+            ScenarioContext.Current["state" + userId] = state;
+            var bus = new Bus();
+            ScenarioContext.Current["bus" + userId] = bus;
+            var application = new Application(
+                state,
+                bus);
+            ScenarioContext.Current["application" + userId] = application;
         }
 
         [Given(@"User see application window")]
@@ -32,6 +51,12 @@ namespace WebBasedChat.Specification
             Assert.AreEqual(expectedScreen, screenNumber, "Invalid screen shown");
         }
 
+        public void TearDown(int userId)
+        {
+            var application = (Application)ScenarioContext.Current["application" + userId];
+            application.Dispose();
+        }
+
         [AfterScenario]
         public void TearDown()
         {
@@ -43,6 +68,13 @@ namespace WebBasedChat.Specification
         public void WhenUserPutANickname(string nick)
         {
             var state = (State)ScenarioContext.Current["state"];
+            state.Name = nick;
+        }
+
+        [Given(@"User '(.*)' put a nickname '(.*)'")]
+        public void GivenOtherUserPutANickname(int userId, string nick)
+        {
+            var state = (State)ScenarioContext.Current["state" + userId];
             state.Name = nick;
         }
 
@@ -92,8 +124,16 @@ namespace WebBasedChat.Specification
             state.RoomsAreReady = true;
         }
 
+        [Given(@"User click ""(.*)"" button")]
         [When(@"User click ""(.*)"" button")]
         public void WhenUserClickButton(string buttonName)
+        {
+            var app = (Application)ScenarioContext.Current["application"];
+            app.ExecuteOn(buttonName);
+        }
+
+        [Given(@"User '(.*)' click '(.*)' button")]
+        public void GivenOtherUserClickButton(int userId, string buttonName)
         {
             var app = (Application)ScenarioContext.Current["application"];
             app.ExecuteOn(buttonName);
@@ -120,25 +160,27 @@ namespace WebBasedChat.Specification
             Assert.AreEqual(state.SelectedChatRoom, state.JoinedChatRoom, "Did not join selected chat room");
         }
 
-        [Given(@"User join selected chat room")]
-        public void GivenUserJoinSelectedChatRoom()
+        [Given(@"User (.*) join chat room (.*)")]
+        public void GivenJoinChatRoom(int userId, int chatRoomId)
         {
-        }
-
-        [Given(@"""(.*)"" join chat room (.*)")]
-        public void GivenJoinChatRoom(string p0, int p1)
-        {
+            GivenOtherUserRunApplication(userId);
+            GivenOtherUserPutANickname(userId, "User" + userId);
+            GivenOtherUserClickButton(userId, "Join");
         }
 
         [When(@"User enter ""(.*)"" message")]
         public void WhenUserEnterMessage(string message)
         {
+            var application = (Application)ScenarioContext.Current["application"];
+            application.Enter(message);
         }
 
-        [Then(@"""(.*)"" was send to ""(.*)""")]
-        public void ThenWasSendTo(string message, string userName)
+        [Then(@"""(.*)"" was send to user (.*)")]
+        public void ThenWasSendTo(string message, int userId)
         {
-            Assert.Fail("assertion empty");
+            var bus = (IBus)ScenarioContext.Current["bus" + userId];
+            Assert.AreEqual(message, bus.Last());
+            TearDown(userId);
         }
     }
 }

@@ -1,12 +1,17 @@
 ﻿using System;
+using WebBasedChat.Communication;
 
 namespace WebBasedChat.Client.Models
 {
     public class Application : IDisposable
     {
-        public Application(State state)
+        private readonly IBus _bus;
+        private string _message;
+
+        public Application(State state, IBus bus)
         {
             State = state;
+            this._bus = bus;
         }
 
         public void Dispose()
@@ -35,8 +40,21 @@ namespace WebBasedChat.Client.Models
             {
                 State.RoomsAreReady = true;
             }
+
+            if (buttonName == "Submit")
+            {
+                if (!string.IsNullOrEmpty(this._message))
+                {
+                    this._bus.Send(this._message);
+                }
+            }
         }
 
         private State State { get; }
+
+        public void Enter(string message)
+        {
+            this._message = message;
+        }
     }
 }
