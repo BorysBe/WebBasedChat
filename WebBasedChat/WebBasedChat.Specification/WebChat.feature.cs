@@ -72,11 +72,11 @@ namespace WebBasedChat.Specification
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Start application with Screen 1")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
+        [NUnit.Framework.CategoryAttribute("As-a-User-I-want-to-start-application-from-Screen-1")]
         public virtual void StartApplicationWithScreen1()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Start application with Screen 1", null, new string[] {
-                        "mytag"});
+                        "As-a-User-I-want-to-start-application-from-Screen-1"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -92,11 +92,11 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Store nickname")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
+        [NUnit.Framework.CategoryAttribute("As-a-User-I-want-to-put-my-nickname-on-Screen-1")]
         public virtual void StoreNickname()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Store nickname", null, new string[] {
-                        "mytag"});
+                        "As-a-User-I-want-to-put-my-nickname-on-Screen-1"});
 #line 13
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -114,11 +114,11 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Proceed from Screen 1 to Screen 2")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
+        [NUnit.Framework.CategoryAttribute("As-a-User-I-want-to-click-proceed-button-on-Screen-1-so-that-I-can-see-Screen-2")]
         public virtual void ProceedFromScreen1ToScreen2()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Proceed from Screen 1 to Screen 2", null, new string[] {
-                        "mytag"});
+                        "As-a-User-I-want-to-click-proceed-button-on-Screen-1-so-that-I-can-see-Screen-2"});
 #line 20
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -136,11 +136,11 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("See chat rooms on Screen 2")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
+        [NUnit.Framework.CategoryAttribute("As-a-User-I-want-to-see-existing-chat-rooms-on-Screen-2")]
         public virtual void SeeChatRoomsOnScreen2()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("See chat rooms on Screen 2", null, new string[] {
-                        "mytag"});
+                        "As-a-User-I-want-to-see-existing-chat-rooms-on-Screen-2"});
 #line 27
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -158,11 +158,13 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Create new room")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
+        [NUnit.Framework.CategoryAttribute("As-a-User-I-want-to-click-\"Create-new-room\"-button-so-that-I-can-create-new-chat-" +
+            "room")]
         public virtual void CreateNewRoom()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create new room", null, new string[] {
-                        "mytag"});
+                        "As-a-User-I-want-to-click-\"Create-new-room\"-button-so-that-I-can-create-new-chat-" +
+                            "room"});
 #line 34
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -182,11 +184,13 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Join new room")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
+        [NUnit.Framework.CategoryAttribute("As-a-User-I-want-to-click-\"Create-new-room\"-button-so-that-I-can-join-selected-ch" +
+            "at-room-and-see-Screen-3")]
         public virtual void JoinNewRoom()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Join new room", null, new string[] {
-                        "mytag"});
+                        "As-a-User-I-want-to-click-\"Create-new-room\"-button-so-that-I-can-join-selected-ch" +
+                            "at-room-and-see-Screen-3"});
 #line 42
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -210,11 +214,13 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Send message to roommate")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
+        [NUnit.Framework.CategoryAttribute("As-a-User-I-want-to-enter-some-message-and-press-\"submit\"-button-so-that-I-can-se" +
+            "nd-message-to-other-users-in-the-room")]
         public virtual void SendMessageToRoommate()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send message to roommate", null, new string[] {
-                        "mytag"});
+                        "As-a-User-I-want-to-enter-some-message-and-press-\"submit\"-button-so-that-I-can-se" +
+                            "nd-message-to-other-users-in-the-room"});
 #line 52
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
