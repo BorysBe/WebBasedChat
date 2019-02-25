@@ -48,6 +48,11 @@ namespace WebBasedChat.Client.Models
                     this._bus.Send(this._message);
                 }
             }
+
+            if (buttonName == "Back")
+            {
+                State.Screen = 2;
+            }
         }
 
         private State State { get; }

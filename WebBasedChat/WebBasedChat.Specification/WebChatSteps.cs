@@ -97,7 +97,7 @@ namespace WebBasedChat.Specification
         public void GivenUserSeeScreen(int screenNo)
         {
             var state = (State)ScenarioContext.Current["state1"];
-            state.Screen = 2;
+            state.Screen = screenNo;
             var app = (Application)ScenarioContext.Current["application1"];
             app.Show();
         }
@@ -192,7 +192,7 @@ namespace WebBasedChat.Specification
         public void ThenWasSendTo(string message, int userId)
         {
             var bus = (IBus)ScenarioContext.Current["bus" + userId];
-            Assert.AreEqual(message, bus.Last());
+            Assert.AreEqual(message, bus.Last().Item1);
             TearDown(userId);
         }
 

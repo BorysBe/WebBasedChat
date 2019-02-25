@@ -136,3 +136,10 @@ Scenario: Get last 30 messages
 	| Message 13 | User 3 | <date> |
 	| Message 14 | User 3 | <date> |
 	| Message 15 | User 3 | <date> |
+
+@As-a-User-I-want-to-click-Back-button-so-that-I-can-return-to-the-Screen-2
+Scenario: Go back to screen 2
+	Given User run application
+	And User see Screen 3
+	When User click "Back" button
+	Then Should see Screen 2

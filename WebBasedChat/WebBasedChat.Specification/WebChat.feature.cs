@@ -472,6 +472,28 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Go back to screen 2")]
+        [NUnit.Framework.CategoryAttribute("As-a-User-I-want-to-click-Back-button-so-that-I-can-return-to-the-Screen-2")]
+        public virtual void GoBackToScreen2()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Go back to screen 2", null, new string[] {
+                        "As-a-User-I-want-to-click-Back-button-so-that-I-can-return-to-the-Screen-2"});
+#line 141
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 142
+ testRunner.Given("User run application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 143
+ testRunner.And("User see Screen 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 144
+ testRunner.When("User click \"Back\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 145
+ testRunner.Then("Should see Screen 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
