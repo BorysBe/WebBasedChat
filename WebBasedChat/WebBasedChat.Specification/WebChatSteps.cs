@@ -27,7 +27,7 @@ namespace WebBasedChat.Specification
                 Screen = 1
             };
             ScenarioContext.Current["state" + userId] = state;
-            var bus = new Bus();
+            var bus = new Bus(new MemoryStorage(), userId ?? 1);
             ScenarioContext.Current["bus" + userId] = bus;
             var application = new Application(
                 state,
