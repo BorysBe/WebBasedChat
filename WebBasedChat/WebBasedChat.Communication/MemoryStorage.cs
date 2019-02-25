@@ -8,7 +8,7 @@ namespace WebBasedChat.Communication
 {
     public class MemoryStorage : IStorage
     {
-        private static readonly List<Tuple<int, string>> _list = new List<Tuple<int, string>>();
+        private static readonly List<Tuple<string, int, DateTime>> _list = new List<Tuple<string, int, DateTime>>();
         private static ReaderWriterLockSlim locker = new ReaderWriterLockSlim(); // probably more readers then writers
 
         public void Add(string message, int userId)
@@ -16,7 +16,7 @@ namespace WebBasedChat.Communication
             locker.EnterWriteLock();
             try
             {
-                _list.Add(new Tuple<int, string>(userId, message));
+                _list.Add(new Tuple<string, int, DateTime>(message, userId, DateTime.UtcNow));
             }
             finally
             {
@@ -24,19 +24,19 @@ namespace WebBasedChat.Communication
             }
         }
 
-        public string Last(int userId, int idxOffset)
+        public Tuple<string, int, DateTime> Last(int userId, int idxOffset)
         {
-            string result;
+            Tuple<string, int, DateTime> result;
             locker.EnterReadLock();
             try
             {
                 if (idxOffset == 0)
                 {
-                    result = _list.LastOrDefault(x => x.Item1 != userId)?.Item2;
+                    result = _list.LastOrDefault(x => x.Item2 != userId);
                 }
                 else
                 {
-                    result = _list.ElementAt(_list.Count - idxOffset)?.Item2;
+                    result = _list.ElementAt(_list.Count - idxOffset);
                 }
             }
             finally

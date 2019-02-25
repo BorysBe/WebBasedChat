@@ -68,7 +68,7 @@ Scenario: Get last 30 messages
 	And User 2 join chat room 1
 	And User 3 join chat room 1
 	And User 2 submit messages
-	| message |
+	| message | 
 	| Message 1 |
 	| Message 2 |
 	| Message 3 |
@@ -105,100 +105,34 @@ Scenario: Get last 30 messages
 	| Message 15 |
 
 	Then Following messages was send to user 1
-	| message |
-	| Message 2 |
-	| Message 3 |
-	| Message 4 |
-	| Message 5 |
-	| Message 6 |
-	| Message 7 |
-	| Message 8 |
-	| Message 9 |
-	| Message 10 |
-	| Message 11 |
-	| Message 12 |
-	| Message 13 |
-	| Message 14 |
-	| Message 15 |
-	| some text |
-	| Message 1 |
-	| Message 2 |
-	| Message 3 |
-	| Message 4 |
-	| Message 5 |
-	| Message 6 |
-	| Message 7 |
-	| Message 8 |
-	| Message 9 |
-	| Message 10 |
-	| Message 11 |
-	| Message 12 |
-	| Message 13 |
-	| Message 14 |
-	| Message 15 |
-	
-	And Following messages was send to user 2
-	| message |
-	| Message 2 |
-	| Message 3 |
-	| Message 4 |
-	| Message 5 |
-	| Message 6 |
-	| Message 7 |
-	| Message 8 |
-	| Message 9 |
-	| Message 10 |
-	| Message 11 |
-	| Message 12 |
-	| Message 13 |
-	| Message 14 |
-	| Message 15 |
-	| some text |
-	| Message 1 |
-	| Message 2 |
-	| Message 3 |
-	| Message 4 |
-	| Message 5 |
-	| Message 6 |
-	| Message 7 |
-	| Message 8 |
-	| Message 9 |
-	| Message 10 |
-	| Message 11 |
-	| Message 12 |
-	| Message 13 |
-	| Message 14 |
-	| Message 15 |
-	
-	And Following messages was send to user 3
-	| message |
-	| Message 2 |
-	| Message 3 |
-	| Message 4 |
-	| Message 5 |
-	| Message 6 |
-	| Message 7 |
-	| Message 8 |
-	| Message 9 |
-	| Message 10 |
-	| Message 11 |
-	| Message 12 |
-	| Message 13 |
-	| Message 14 |
-	| Message 15 |
-	| some text |
-	| Message 1 |
-	| Message 2 |
-	| Message 3 |
-	| Message 4 |
-	| Message 5 |
-	| Message 6 |
-	| Message 7 |
-	| Message 8 |
-	| Message 9 |
-	| Message 10 |
-	| Message 11 |
-	| Message 12 |
-	| Message 13 |
-	| Message 14 |
-	| Message 15 |
+	| message   | nick   | date   |
+	| Message 2 | User 2 | <date> |
+	| Message 3 | User 2 | <date> |
+	| Message 4 | User 2 | <date> |
+	| Message 5 | User 2 | <date> |
+	| Message 6 | User 2 | <date> |
+	| Message 7 | User 2 | <date> |
+	| Message 8 | User 2 | <date> |
+	| Message 9 | User 2 | <date> |
+	| Message 10 | User 2 | <date> |
+	| Message 11 | User 2 | <date> |
+	| Message 12 | User 2 | <date> |
+	| Message 13 | User 2 | <date> |
+	| Message 14 | User 2 | <date> |
+	| Message 15 | User 2 | <date> |
+	| some text | User 1 | <date> |
+	| Message 1 | User 3 | <date> |
+	| Message 2 | User 3 | <date> |
+	| Message 3 | User 3 | <date> |
+	| Message 4 | User 3 | <date> |
+	| Message 5 | User 3 | <date> |
+	| Message 6 | User 3 | <date> |
+	| Message 7 | User 3 | <date> |
+	| Message 8 | User 3 | <date> |
+	| Message 9 | User 3 | <date> |
+	| Message 10 | User 3 | <date> |
+	| Message 11 | User 3 | <date> |
+	| Message 12 | User 3 | <date> |
+	| Message 13 | User 3 | <date> |
+	| Message 14 | User 3 | <date> |
+	| Message 15 | User 3 | <date> |

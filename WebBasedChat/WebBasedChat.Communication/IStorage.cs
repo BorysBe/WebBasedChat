@@ -1,4 +1,6 @@
-﻿namespace WebBasedChat.Communication
+﻿using System;
+
+namespace WebBasedChat.Communication
 {
     public interface IStorage
     {
@@ -9,7 +11,7 @@
         /// </summary>
         /// <param name="userId">id of requestor</param>
         /// <param name="idxOffset">offset from last message</param>
-        /// <returns></returns>
-        string Last(int userId, int idxOffset);
+        /// <returns>message row</returns>
+        Tuple<string, int, DateTime> Last(int userId, int idxOffset);
     }
 }

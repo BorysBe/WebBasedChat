@@ -1,8 +1,10 @@
-﻿namespace WebBasedChat.Communication
+﻿using System;
+
+namespace WebBasedChat.Communication
 {
     public interface IBus
     {
         void Send(string message);
-        string Last(int idx = 0);
+        Tuple<string, int, DateTime> Last(int idxOffset = 0);
     }
 }

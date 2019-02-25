@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using WebBasedChat.Client.Models;
@@ -203,9 +203,17 @@ namespace WebBasedChat.Specification
             int minusId = 30;
             foreach (var row in table.Rows)
             {
-                Assert.AreEqual(row["message"], bus.Last(minusId--));
+                var tuple = bus.Last(minusId--);
+                Assert.AreEqual(row["message"], tuple.Item1);
+                Assert.AreEqual(row["nick"], MapIdToNickname(tuple));
+                Assert.IsInstanceOf<DateTime>(tuple.Item3);
             }
             TearDown(userId);
+        }
+
+        private static string MapIdToNickname(Tuple<string, int, DateTime> tuple)
+        {
+            return $"User {tuple.Item2}";
         }
     }
 }

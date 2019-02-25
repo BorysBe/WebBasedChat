@@ -1,4 +1,6 @@
-﻿namespace WebBasedChat.Communication
+﻿using System;
+
+namespace WebBasedChat.Communication
 {
     public class Bus : IBus
     {
@@ -16,9 +18,9 @@
             this._storage.Add(message, _userId);
         }
 
-        public string Last(int idx = 0)
+        public Tuple<string, int, DateTime> Last(int idxOffset = 0)
         {
-            return this._storage.Last(_userId, idx);
+            return this._storage.Last(_userId, idxOffset);
         }
     }
 }
