@@ -141,14 +141,14 @@ namespace WebBasedChat.Specification
         public void WhenUserClickButton(string buttonName)
         {
             var app = (Application)ScenarioContext.Current["application1"];
-            app.ExecuteOn(buttonName);
+            app.CommandFactory.CreateFrom(buttonName).Execute();
         }
 
         [Given(@"User '(.*)' click '(.*)' button")]
         public void GivenOtherUserClickButton(int userId, string buttonName)
         {
             var app = (Application)ScenarioContext.Current["application1"];
-            app.ExecuteOn(buttonName);
+            app.CommandFactory.CreateFrom(buttonName).Execute();
         }
 
         [Then(@"Chat room is created")]
@@ -195,7 +195,7 @@ namespace WebBasedChat.Specification
             foreach (var row in table.Rows)
             {
                 application.Enter(row["message"]);
-                application.ExecuteOn("Submit");
+                application.CommandFactory.CreateFrom("Submit").Execute();
             }
         }
 

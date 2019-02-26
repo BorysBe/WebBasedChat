@@ -1,17 +1,16 @@
 ﻿using System;
+using WebBasedChat.Client.Commands;
+using WebBasedChat.Client.Factories;
 using WebBasedChat.Communication;
 
 namespace WebBasedChat.Client.Models
 {
     public class Application : IDisposable
     {
-        private readonly IClientServiceProxy _clientServiceProxy;
-        private string _message;
-
         public Application(State state, IClientServiceProxy clientServiceProxy)
         {
             State = state;
-            this._clientServiceProxy = clientServiceProxy;
+            _commandFactory = new CommandFactory(state, clientServiceProxy);
         }
 
         public void Dispose()
@@ -28,41 +27,18 @@ namespace WebBasedChat.Client.Models
             State.Screen = 2;
         }
 
-        private static int roomIdx;
-
-        public void ExecuteOn(string buttonName)
-        {
-            if (buttonName == "Join")
-            {
-                State.JoinedChatRoom = State.SelectedChatRoom;
-                State.Screen = 3;
-            }
-
-            if (buttonName == "Create new room")
-            {
-                var roomId = _clientServiceProxy.CreateRoom("room" + roomIdx++);
-                State.RoomsAreReady = true;
-            }
-
-            if (buttonName == "Submit")
-            {
-                if (!string.IsNullOrEmpty(this._message))
-                {
-                    this._clientServiceProxy.Send(this._message);
-                }
-            }
-
-            if (buttonName == "Back")
-            {
-                State.Screen = 2;
-            }
-        }
+        private readonly CommandFactory _commandFactory;
 
         private State State { get; }
 
+        public CommandFactory CommandFactory
+        {
+            get { return _commandFactory; }
+        }
+
         public void Enter(string message)
         {
-            this._message = message;
+            this.State.LastMessage = message;
         }
     }
 }

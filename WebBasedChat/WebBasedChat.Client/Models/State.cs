@@ -3,6 +3,7 @@
     public class State
     {
         public int Screen { get; set; }
+        public string LastMessage { get; set; }
         public string Name { get; set; }
         public bool RoomsAreReady { get; set; }
         public int? SelectedChatRoom { get; set; }
