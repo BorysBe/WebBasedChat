@@ -45,7 +45,7 @@
     <Compile Include="Commands\ShowRoomSceenCommand.cs" />
     <Compile Include="Commands\SubmitCommand.cs" />
     <Compile Include="Models\Application.cs" />
-    <Compile Include="Commands\CommandFactory.cs" />
+    <Compile Include="Factories\CommandFactory.cs" />
     <Compile Include="Commands\NullObjectCommand.cs" />
     <Compile Include="Models\State.cs" />
   </ItemGroup>

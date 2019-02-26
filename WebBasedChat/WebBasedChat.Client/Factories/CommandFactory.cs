@@ -1,9 +1,10 @@
-﻿using WebBasedChat.Client.Commands.Contracts;
+﻿using WebBasedChat.Client.Commands;
+using WebBasedChat.Client.Commands.Contracts;
 using WebBasedChat.Client.Factories.Contracts;
 using WebBasedChat.Client.Models;
 using WebBasedChat.Communication;
 
-namespace WebBasedChat.Client.Commands
+namespace WebBasedChat.Client.Factories
 {
     public class CommandFactory : ICommandFactory
     {
