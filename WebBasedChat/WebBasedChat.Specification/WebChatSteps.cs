@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.ServiceModel;
-using System.ServiceModel.Description;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using WebBasedChat.Client.Models;
 using WebBasedChat.Communication;
-using WebBasedChat.Server;
 
 namespace WebBasedChat.Specification
 {
@@ -34,18 +30,18 @@ namespace WebBasedChat.Specification
             {
                 Screen = 1
             };
+            if (_server == null)
+            {
+                _server = new Server.Server();
+            }
             ScenarioContext.Current["state" + userId] = state;
-            var memoryStorage = new MemoryStorage();
-            var bus = new Bus(memoryStorage, userId);
+            var bus = new Bus(_server.Address.OriginalString, userId);
             ScenarioContext.Current["bus" + userId] = bus;
             var application = new Application(
                 state,
                 bus);
             ScenarioContext.Current["application" + userId] = application;
-            if (_server == null)
-            {
-                _server = new Server.Server(memoryStorage);
-            }
+            
         }
 
         [Given(@"User see application window")]
@@ -213,8 +209,9 @@ namespace WebBasedChat.Specification
         [Then(@"Following messages was send to user (.*)")]
         public void ThenFollowingMessagesWasSendToUser(int userId, Table table)
         {
+            var bus = (IBus)ScenarioContext.Current["bus" + userId];
             int minusId = 30;
-            var tuples = GetMessages();
+            var tuples = bus.Last(minusId);
             int rowNo = 0;
             foreach (var row in table.Rows)
             {
@@ -226,15 +223,6 @@ namespace WebBasedChat.Specification
             TearDown(userId);
         }
         
-        List<Tuple<string, int, DateTime>> GetMessages()
-        {
-            string uri = _server.Address.OriginalString;
-            var factory = new ChannelFactory<IChatService>(new WebHttpBinding(), uri);
-            factory.Endpoint.Behaviors.Add(new WebHttpBehavior());
-            IChatService proxy = factory.CreateChannel();
-            return proxy.GetMessages(1).ToList();
-        }
-
         private static string MapIdToNickname(Tuple<string, int, DateTime> tuple)
         {
             return $"User {tuple.Item2}";

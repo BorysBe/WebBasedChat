@@ -7,9 +7,14 @@ namespace WebBasedChat.Server
     {
         private readonly IStorage _storage = new MemoryStorage();
 
-        public IEnumerable<Tuple<string, int, DateTime>> GetMessages(int userId)
+        public IEnumerable<Tuple<string, int, DateTime>> GetMessages(int userId, int idxOffset)
         {
-            return _storage.Last(userId, 30);
+            return _storage.Last(userId, idxOffset);
+        }
+
+        public void Send(Message message)
+        {
+            _storage.Add(message.Content, message.UserId);
         }
     }
 }

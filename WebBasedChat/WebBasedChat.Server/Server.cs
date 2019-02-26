@@ -7,12 +7,10 @@ namespace WebBasedChat.Server
     public class Server : IDisposable
     {
         public static readonly string SampleAddress =  "http://" + Environment.MachineName + ":8008/WebBasedChat";
-        private readonly IStorage _storage;
         private readonly ServiceHost _serviceHost;
 
-        public Server(IStorage storage)
+        public Server()
         {
-            _storage = storage;
             try
             {
                 Uri httpBaseAddress = Address;
