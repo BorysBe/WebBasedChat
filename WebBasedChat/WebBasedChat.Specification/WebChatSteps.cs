@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
+using System.ServiceModel.Description;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using WebBasedChat.Client.Models;
@@ -39,7 +42,10 @@ namespace WebBasedChat.Specification
                 state,
                 bus);
             ScenarioContext.Current["application" + userId] = application;
-            _server = new Server.Server(memoryStorage);
+            if (_server == null)
+            {
+                _server = new Server.Server(memoryStorage);
+            }
         }
 
         [Given(@"User see application window")]
@@ -70,6 +76,7 @@ namespace WebBasedChat.Specification
             var application = (Application)ScenarioContext.Current["application1"];
             application.Dispose();
             _server?.Dispose();
+            _server = null;
         }
 
         [When(@"User put a nickname '(.*)'")]
@@ -206,26 +213,26 @@ namespace WebBasedChat.Specification
         [Then(@"Following messages was send to user (.*)")]
         public void ThenFollowingMessagesWasSendToUser(int userId, Table table)
         {
-            var bus = (IBus)ScenarioContext.Current["bus" + userId];
             int minusId = 30;
-            var tuples = bus.Last(minusId--);
+            var tuples = GetMessages();
             int rowNo = 0;
             foreach (var row in table.Rows)
             {
-                try
-                {
-                    Assert.AreEqual(row["message"], tuples.ElementAt(rowNo).Item1);
-                    Assert.AreEqual(row["nick"], MapIdToNickname(tuples.ElementAt(rowNo)));
-                    Assert.IsInstanceOf<DateTime>(tuples.ElementAt(rowNo).Item3);
-                    rowNo++;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    throw;
-                }
+                Assert.AreEqual(row["message"], tuples.ElementAt(rowNo).Item1);
+                Assert.AreEqual(row["nick"], MapIdToNickname(tuples.ElementAt(rowNo)));
+                Assert.IsInstanceOf<DateTime>(tuples.ElementAt(rowNo).Item3);
+                rowNo++;
             }
             TearDown(userId);
+        }
+        
+        List<Tuple<string, int, DateTime>> GetMessages()
+        {
+            string uri = _server.Address.OriginalString;
+            var factory = new ChannelFactory<IChatService>(new WebHttpBinding(), uri);
+            factory.Endpoint.Behaviors.Add(new WebHttpBehavior());
+            IChatService proxy = factory.CreateChannel();
+            return proxy.GetMessages(1).ToList();
         }
 
         private static string MapIdToNickname(Tuple<string, int, DateTime> tuple)

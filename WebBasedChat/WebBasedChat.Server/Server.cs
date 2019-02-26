@@ -6,6 +6,7 @@ namespace WebBasedChat.Server
 {
     public class Server : IDisposable
     {
+        public static readonly string SampleAddress =  "http://" + Environment.MachineName + ":8008/WebBasedChat";
         private readonly IStorage _storage;
         private readonly ServiceHost _serviceHost;
 
@@ -14,17 +15,12 @@ namespace WebBasedChat.Server
             _storage = storage;
             try
             {
-                Uri httpBaseAddress = new Uri("http://localhost:4321/WebBasedChat");
-                _serviceHost = new ServiceHost(typeof(ChatService),
-                    httpBaseAddress);
-                _serviceHost.AddServiceEndpoint(typeof(IChatService),
-                    new WSHttpBinding(), "");
-                ServiceMetadataBehavior serviceBehavior = new ServiceMetadataBehavior();
-                serviceBehavior.HttpGetEnabled = true;
-                _serviceHost.Description.Behaviors.Add(serviceBehavior);
+                Uri httpBaseAddress = Address;
+                _serviceHost = new ServiceHost(typeof(ChatService), httpBaseAddress);
+                _serviceHost.AddServiceEndpoint(typeof(IChatService), new WebHttpBinding(), "").Behaviors.Add(new WebHttpBehavior());
                 _serviceHost.Open();
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 _serviceHost = null;
             }
@@ -35,5 +31,7 @@ namespace WebBasedChat.Server
             var disposable = ((IDisposable)_serviceHost);
             disposable?.Dispose();
         }
+
+        public Uri Address => new Uri(SampleAddress);
     }
 }
