@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ServiceModel;
 using System.ServiceModel.Description;
+using WebBasedChat.Server.Contracts;
 
 namespace WebBasedChat.Server
 {
@@ -9,12 +10,13 @@ namespace WebBasedChat.Server
         public static readonly string SampleAddress =  "http://" + Environment.MachineName + ":8008/WebBasedChat";
         private readonly ServiceHost _serviceHost;
 
-        public Server()
+        public Server(IStorage storage)
         {
             try
             {
+                var myService = new ChatService(storage);
                 Uri httpBaseAddress = Address;
-                _serviceHost = new ServiceHost(typeof(ChatService), httpBaseAddress);
+                _serviceHost = new ServiceHost(myService, httpBaseAddress);
                 _serviceHost.AddServiceEndpoint(typeof(IChatService), new WebHttpBinding(), "").Behaviors.Add(new WebHttpBehavior());
                 _serviceHost.Open();
             }

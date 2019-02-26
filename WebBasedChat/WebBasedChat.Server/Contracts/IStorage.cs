@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WebBasedChat.Server
+namespace WebBasedChat.Server.Contracts
 {
     public interface IStorage
     {

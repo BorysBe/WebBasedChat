@@ -1,11 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ServiceModel;
+using WebBasedChat.Server.Contracts;
 
 namespace WebBasedChat.Server
 {
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class ChatService : IChatService
     {
-        private readonly IStorage _storage = new MemoryStorage();
+        public ChatService(IStorage storage)
+        {
+            _storage = storage;
+        }
+
+        private readonly IStorage _storage;
 
         public IEnumerable<Tuple<string, int, DateTime>> GetMessages(int userId, int idxOffset)
         {

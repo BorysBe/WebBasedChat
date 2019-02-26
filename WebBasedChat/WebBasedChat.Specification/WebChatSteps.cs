@@ -1,9 +1,10 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.Linq;
-using NUnit.Framework;
 using TechTalk.SpecFlow;
 using WebBasedChat.Client.Models;
 using WebBasedChat.Communication;
+using WebBasedChat.Server;
 
 namespace WebBasedChat.Specification
 {
@@ -32,7 +33,7 @@ namespace WebBasedChat.Specification
             };
             if (_server == null)
             {
-                _server = new Server.Server();
+                _server = new Server.Server(new MemoryStorage());
             }
             ScenarioContext.Current["state" + userId] = state;
             var bus = new Bus(_server.Address.OriginalString, userId);

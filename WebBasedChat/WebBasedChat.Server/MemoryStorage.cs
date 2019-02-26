@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using WebBasedChat.Server.Contracts;
 
 namespace WebBasedChat.Server
 {
