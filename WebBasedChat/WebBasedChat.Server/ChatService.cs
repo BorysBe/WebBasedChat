@@ -8,21 +8,26 @@ namespace WebBasedChat.Server
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class ChatService : IChatService
     {
-        public ChatService(IStorage storage)
+        public ChatService(IRepository repository)
         {
-            _storage = storage;
+            _repository = repository;
         }
 
-        private readonly IStorage _storage;
+        private readonly IRepository _repository;
 
         public IEnumerable<Tuple<string, int, DateTime>> GetMessages(int userId, int idxOffset)
         {
-            return _storage.Last(userId, idxOffset);
+            return _repository.Retrieve(userId, idxOffset);
         }
 
         public void Send(Message message)
         {
-            _storage.Add(message.Content, message.UserId);
+            _repository.Create(message.Content, message.UserId);
+        }
+
+        public int CreateRoom(string roomName)
+        {
+            return _repository.Create(roomName);
         }
     }
 }

@@ -10,11 +10,11 @@ namespace WebBasedChat.Server
         public static readonly string SampleAddress =  "http://" + Environment.MachineName + ":8008/WebBasedChat";
         private readonly ServiceHost _serviceHost;
 
-        public Server(IStorage storage)
+        public Server(IRepository repository)
         {
             try
             {
-                var myService = new ChatService(storage);
+                var myService = new ChatService(repository);
                 Uri httpBaseAddress = Address;
                 _serviceHost = new ServiceHost(myService, httpBaseAddress);
                 _serviceHost.AddServiceEndpoint(typeof(IChatService), new WebHttpBinding(), "").Behaviors.Add(new WebHttpBehavior());

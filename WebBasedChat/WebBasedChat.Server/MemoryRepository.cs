@@ -6,12 +6,14 @@ using WebBasedChat.Server.Contracts;
 
 namespace WebBasedChat.Server
 {
-    public class MemoryStorage : IStorage
+    public class MemoryRepository : IRepository
     {
         private static readonly List<Tuple<string, int, DateTime>> _list = new List<Tuple<string, int, DateTime>>();
         private static ReaderWriterLockSlim locker = new ReaderWriterLockSlim(); // probably more readers then writers
 
-        public void Add(string message, int userId)
+        private static readonly Dictionary<int, string> _rooms = new Dictionary<int, string>();
+
+        public void Create(string message, int userId)
         {
             locker.EnterWriteLock();
             try
@@ -24,7 +26,28 @@ namespace WebBasedChat.Server
             }
         }
 
-        public List<Tuple<string, int, DateTime>> Last(int userId, int idxOffset)
+        static int roomId = 0;
+
+        public int Create(string roomName)
+        {
+            lock (this)
+            {
+                _rooms.Add(roomId, roomName);
+            }
+            
+            return roomId++;
+        }
+
+        public IEnumerable<KeyValuePair<int, string>> Retrieve()
+        {
+            lock (this)
+            {
+                var pairs = _rooms.AsEnumerable();
+                return pairs;
+            }
+        }
+
+        public List<Tuple<string, int, DateTime>> Retrieve(int userId, int idxOffset)
         {
             Tuple<string, int, DateTime> result;
             locker.EnterReadLock();

@@ -5,13 +5,13 @@ namespace WebBasedChat.Client.Models
 {
     public class Application : IDisposable
     {
-        private readonly IBus _bus;
+        private readonly IClientServiceProxy _clientServiceProxy;
         private string _message;
 
-        public Application(State state, IBus bus)
+        public Application(State state, IClientServiceProxy clientServiceProxy)
         {
             State = state;
-            this._bus = bus;
+            this._clientServiceProxy = clientServiceProxy;
         }
 
         public void Dispose()
@@ -28,6 +28,8 @@ namespace WebBasedChat.Client.Models
             State.Screen = 2;
         }
 
+        private static int roomIdx;
+
         public void ExecuteOn(string buttonName)
         {
             if (buttonName == "Join")
@@ -38,6 +40,7 @@ namespace WebBasedChat.Client.Models
 
             if (buttonName == "Create new room")
             {
+                var roomId = _clientServiceProxy.CreateRoom("room" + roomIdx++);
                 State.RoomsAreReady = true;
             }
 
@@ -45,7 +48,7 @@ namespace WebBasedChat.Client.Models
             {
                 if (!string.IsNullOrEmpty(this._message))
                 {
-                    this._bus.Send(this._message);
+                    this._clientServiceProxy.Send(this._message);
                 }
             }
 

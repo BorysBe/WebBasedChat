@@ -33,11 +33,11 @@ namespace WebBasedChat.Specification
             };
             if (_server == null)
             {
-                _server = new Server.Server(new MemoryStorage());
+                _server = new Server.Server(new MemoryRepository());
             }
             ScenarioContext.Current["state" + userId] = state;
-            var bus = new Bus(_server.Address.OriginalString, userId);
-            ScenarioContext.Current["bus" + userId] = bus;
+            var bus = new ClientServiceProxy(_server.Address.OriginalString, userId);
+            ScenarioContext.Current["clientServiceProxy" + userId] = bus;
             var application = new Application(
                 state,
                 bus);
@@ -202,7 +202,7 @@ namespace WebBasedChat.Specification
         [Then(@"""(.*)"" was send to user (.*)")]
         public void ThenWasSendTo(string message, int userId)
         {
-            var bus = (IBus)ScenarioContext.Current["bus" + userId];
+            var bus = (IClientServiceProxy)ScenarioContext.Current["clientServiceProxy" + userId];
             Assert.AreEqual(message, bus.Last().ElementAt(0).Item1);
             TearDown(userId);
         }
@@ -210,7 +210,7 @@ namespace WebBasedChat.Specification
         [Then(@"Following messages was send to user (.*)")]
         public void ThenFollowingMessagesWasSendToUser(int userId, Table table)
         {
-            var bus = (IBus)ScenarioContext.Current["bus" + userId];
+            var bus = (IClientServiceProxy)ScenarioContext.Current["clientServiceProxy" + userId];
             int minusId = 30;
             var tuples = bus.Last(minusId);
             int rowNo = 0;

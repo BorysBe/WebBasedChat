@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Description;
-using WebBasedChat.Server;
+using WebBasedChat.Server.Contracts;
 
 namespace WebBasedChat.Communication
 {
-    public class Bus : IBus
+    public class ClientServiceProxy : IClientServiceProxy
     {
         private readonly string _server;
         private readonly int _userId;
-        private IChatService _proxy;
+        private readonly IChatService _proxy;
 
-        public Bus(string server, int userId)
+        public ClientServiceProxy(string server, int userId)
         {
             _server = server;
             _userId = userId;
@@ -32,6 +32,10 @@ namespace WebBasedChat.Communication
             return _proxy.GetMessages(_userId, idxOffset).ToList();
         }
 
+        public int CreateRoom(string roomName)
+        {
+            return _proxy.CreateRoom(roomName);
+        }
     }
 
 }

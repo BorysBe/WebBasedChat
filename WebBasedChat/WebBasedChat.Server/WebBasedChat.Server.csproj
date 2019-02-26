@@ -47,8 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IStorage.cs" />
-    <Compile Include="MemoryStorage.cs" />
+    <Compile Include="Contracts\IRepository.cs" />
+    <Compile Include="MemoryRepository.cs" />
     <Compile Include="Server.cs" />
     <Compile Include="Contracts\IChatService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -56,9 +56,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
