@@ -3,11 +3,11 @@ using WebBasedChat.Client.Models;
 
 namespace WebBasedChat.Client.Commands
 {
-    public class ShowRoomSceenCommand : ICommand
+    public class ShowRoomScreenCommand : ICommand
     {
         private readonly State _state;
 
-        public ShowRoomSceenCommand(State state)
+        public ShowRoomScreenCommand(State state)
         {
             _state = state;
         }

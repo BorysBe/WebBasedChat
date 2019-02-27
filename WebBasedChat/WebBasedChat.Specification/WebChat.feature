@@ -20,7 +20,7 @@ Scenario: Store nickname
 Scenario: Proceed from Screen 1 to Screen 2
 	Given User run application
 	And User see application window
-	When User click proceed button 
+	When User click "Proceed" button 
 	Then Should see Screen 2
 
 @As-a-User-I-want-to-see-existing-chat-rooms-on-Screen-2

@@ -42,7 +42,7 @@
     <Compile Include="Factories\Contracts\ICommandFactory.cs" />
     <Compile Include="Commands\CreateRoomExecute.cs" />
     <Compile Include="Commands\JoinSelectedRoomCommand.cs" />
-    <Compile Include="Commands\ShowRoomSceenCommand.cs" />
+    <Compile Include="Commands\ShowRoomScreenCommand.cs" />
     <Compile Include="Commands\SubmitCommand.cs" />
     <Compile Include="Models\Application.cs" />
     <Compile Include="Factories\CommandFactory.cs" />
