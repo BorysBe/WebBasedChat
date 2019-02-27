@@ -1,10 +1,7 @@
-﻿using NUnit.Framework;
-using System;
-using System.Linq;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
+using WebBasedChat.Client.Factories;
 using WebBasedChat.Client.Models;
 using WebBasedChat.Communication;
-using WebBasedChat.Communication.Contracts;
 using WebBasedChat.Server;
 
 namespace WebBasedChat.Specification
@@ -37,13 +34,12 @@ namespace WebBasedChat.Specification
                 _server = new Server.Server(new MemoryRepository());
             }
             ScenarioContext.Current["state" + userId] = state;
-            var bus = new ClientServiceProxy(_server.Address.OriginalString, userId);
-            ScenarioContext.Current["clientServiceProxy" + userId] = bus;
-            var application = new Application(
-                state,
-                bus);
+            var clientServiceProxy = new ClientServiceProxy(_server.Address.OriginalString, userId);
+            ScenarioContext.Current["clientServiceProxy" + userId] = clientServiceProxy;
+            var commandFactory = new CommandFactory(state, clientServiceProxy);
+            ScenarioContext.Current["commandFactory" + userId] = commandFactory;
+            var application = new Application(state, commandFactory);
             ScenarioContext.Current["application" + userId] = application;
-            
         }
     }
 }

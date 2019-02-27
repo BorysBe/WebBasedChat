@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using TechTalk.SpecFlow;
+using WebBasedChat.Client.Factories.Contracts;
 using WebBasedChat.Client.Models;
 
 namespace WebBasedChat.Specification
@@ -10,15 +11,15 @@ namespace WebBasedChat.Specification
         [When(@"User click ""(.*)"" button")]
         public void WhenUserClickButton(string buttonName)
         {
-            var app = (Application) ScenarioContext.Current["application1"];
-            app.CommandFactory.CreateFrom(buttonName).Execute();
+            var commandFactory = (ICommandFactory)ScenarioContext.Current["commandFactory1"];
+            commandFactory.CreateFrom(buttonName).Execute();
         }
 
         [Given(@"User '(.*)' click '(.*)' button")]
         public void GivenOtherUserClickButton(int userId, string buttonName)
         {
-            var app = (Application) ScenarioContext.Current["application1"];
-            app.CommandFactory.CreateFrom(buttonName).Execute();
+            var commandFactory = (ICommandFactory)ScenarioContext.Current["commandFactory" + userId];
+            commandFactory.CreateFrom(buttonName).Execute();
         }
 
         [Then(@"Chat room is created")]

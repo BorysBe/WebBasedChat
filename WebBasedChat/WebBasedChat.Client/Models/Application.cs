@@ -1,15 +1,14 @@
 ﻿using System;
-using WebBasedChat.Client.Factories;
-using WebBasedChat.Communication.Contracts;
+using WebBasedChat.Client.Factories.Contracts;
 
 namespace WebBasedChat.Client.Models
 {
     public class Application : IDisposable
     {
-        public Application(State state, IClientServiceProxy clientServiceProxy)
+        public Application(State state, ICommandFactory commandFactory)
         {
             State = state;
-            _commandFactory = new CommandFactory(state, clientServiceProxy);
+            _commandFactory = commandFactory;
         }
 
         public void Dispose()
@@ -17,27 +16,17 @@ namespace WebBasedChat.Client.Models
             // clean up
         }
 
-        public void Show()
-        {
-        }
-
-        public void Proceed()
-        {
-            State.Screen = 2;
-        }
-
-        private readonly CommandFactory _commandFactory;
+        private readonly ICommandFactory _commandFactory;
 
         private State State { get; }
-
-        public CommandFactory CommandFactory
-        {
-            get { return _commandFactory; }
-        }
 
         public void Enter(string message)
         {
             this.State.LastMessage = message;
+        }
+
+        public void Show()
+        {
         }
     }
 }
