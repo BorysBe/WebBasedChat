@@ -24,5 +24,11 @@ namespace WebBasedChat.WpfClient
         {
             InitializeComponent();
         }
+
+        public static readonly string SampleAddress = "http://" + Environment.MachineName + ":8008/WebBasedChat";
+        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            this.serverIP.Text = SampleAddress;
+        }
     }
 }

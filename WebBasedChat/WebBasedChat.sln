@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBasedChat.Server", "WebB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBasedChat.WpfClient", "WebBasedChat.WpfClient\WebBasedChat.WpfClient.csproj", "{A6E30EE4-C75B-4194-8205-6E0AC511C033}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBasedChat.ConsoleServer", "WebBasedChat.ConsoleServer\WebBasedChat.ConsoleServer.csproj", "{A92FB2FC-4978-441E-A572-B8B1BD272D59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{A6E30EE4-C75B-4194-8205-6E0AC511C033}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6E30EE4-C75B-4194-8205-6E0AC511C033}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6E30EE4-C75B-4194-8205-6E0AC511C033}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A92FB2FC-4978-441E-A572-B8B1BD272D59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A92FB2FC-4978-441E-A572-B8B1BD272D59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A92FB2FC-4978-441E-A572-B8B1BD272D59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A92FB2FC-4978-441E-A572-B8B1BD272D59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

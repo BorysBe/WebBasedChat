@@ -6,12 +6,11 @@
         xmlns:local="clr-namespace:WebBasedChat.WpfClient"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525"
+        Loaded="MainWindow_OnLoaded">
     <Grid>
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="68,8,0,0" Name="serverIP" VerticalAlignment="Top" Width="97" />
-        <Label Content="Server IP:" Height="28" HorizontalAlignment="Left" Margin="8,6,0,0" Name="label1" VerticalAlignment="Top" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="199,8,0,0" Name="serverPort" VerticalAlignment="Top" Width="47" />
-        <Label Content="Port:" Height="28" HorizontalAlignment="Left" Margin="166,6,0,0" Name="label2" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="68,8,0,0" Name="serverIP" VerticalAlignment="Top" Width="220" />
+        <Label Content="Server:" Height="28" HorizontalAlignment="Left" Margin="8,6,0,0" Name="label1" VerticalAlignment="Top" />
         <TextBox Height="231" HorizontalAlignment="Left" Margin="11,38,0,0" Name="chatBox" VerticalAlignment="Top" Width="356" IsReadOnly="True" VerticalScrollBarVisibility="Visible" />
         <Label Content="Room:" Height="28" HorizontalAlignment="Left" Margin="369,84,0,0" Name="label3" VerticalAlignment="Top" Width="98" />
         <ListBox Height="161" HorizontalAlignment="Left" Margin="373,108,0,0" Name="messagesFrom" VerticalAlignment="Top" Width="117">
