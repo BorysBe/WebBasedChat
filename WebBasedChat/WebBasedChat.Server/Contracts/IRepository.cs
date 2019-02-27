@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using WebBasedChat.Communication;
 
 namespace WebBasedChat.Server.Contracts
 {
@@ -8,8 +8,8 @@ namespace WebBasedChat.Server.Contracts
         /// <summary>
         /// Create an message entry
         /// </summary>
-        /// <param name="message"></param>
-        /// <param name="userId"></param>
+        /// <param name="message">message send to chat room</param>
+        /// <param name="userId">id of user</param>
         void Create(string message, int userId);
 
         /// <summary>
@@ -25,6 +25,6 @@ namespace WebBasedChat.Server.Contracts
         /// <param name="userId">id of requestor</param>
         /// <param name="idxOffset">offset from last message</param>
         /// <returns>message row</returns>
-        List<Tuple<string, int, DateTime>> Retrieve(int userId, int idxOffset);
+        List<StoredMessage> Retrieve(int userId, int idxOffset);
     }
 }

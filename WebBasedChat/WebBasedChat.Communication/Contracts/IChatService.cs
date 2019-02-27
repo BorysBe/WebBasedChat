@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
-using WebBasedChat.Communication;
 
-namespace WebBasedChat.Server.Contracts
+namespace WebBasedChat.Communication.Contracts
 {
     [ServiceContract]
     public interface IChatService
@@ -21,13 +19,5 @@ namespace WebBasedChat.Server.Contracts
         [WebInvoke(Method = "PUT", BodyStyle = WebMessageBodyStyle.WrappedRequest, UriTemplate = "CreateRoom",
             RequestFormat = WebMessageFormat.Json)]
         int CreateRoom(string roomName);
-    }
-
-    [DataContract]
-    public class Message
-    {
-        [DataMember] public string Content { get; set; }
-
-        [DataMember] public int UserId { get; set; }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
-using WebBasedChat.Client.Commands;
 using WebBasedChat.Client.Factories;
-using WebBasedChat.Communication;
+using WebBasedChat.Communication.Contracts;
 
 namespace WebBasedChat.Client.Models
 {

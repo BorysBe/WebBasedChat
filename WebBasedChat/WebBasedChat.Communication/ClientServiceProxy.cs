@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Description;
-using WebBasedChat.Server.Contracts;
+using WebBasedChat.Communication.Contracts;
+using IChatService = WebBasedChat.Communication.Contracts.IChatService;
 
 namespace WebBasedChat.Communication
 {
@@ -27,7 +27,7 @@ namespace WebBasedChat.Communication
             this._proxy.Send(new Message() { Content = message, UserId = _userId});
         }
 
-        public IEnumerable<Tuple<string, int, DateTime>> Last(int idxOffset = 0)
+        public IEnumerable<StoredMessage> Last(int idxOffset = 0)
         {
             return _proxy.GetMessages(_userId, idxOffset).ToList();
         }

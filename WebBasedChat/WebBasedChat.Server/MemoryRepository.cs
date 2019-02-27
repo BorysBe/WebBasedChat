@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using WebBasedChat.Communication;
 using WebBasedChat.Server.Contracts;
 
 namespace WebBasedChat.Server
 {
     public class MemoryRepository : IRepository
     {
-        private static readonly List<Tuple<string, int, DateTime>> _list = new List<Tuple<string, int, DateTime>>();
+        private static readonly List<StoredMessage> _list = new List<StoredMessage>();
         private static ReaderWriterLockSlim locker = new ReaderWriterLockSlim(); // probably more readers then writers
 
         private static readonly Dictionary<int, string> _rooms = new Dictionary<int, string>();
@@ -18,7 +19,7 @@ namespace WebBasedChat.Server
             locker.EnterWriteLock();
             try
             {
-                _list.Add(new Tuple<string, int, DateTime>(message, userId, DateTime.UtcNow));
+                _list.Add(new StoredMessage () { Content = message, UserId = userId, DateTime = DateTime.UtcNow } );
             }
             finally
             {
@@ -47,16 +48,16 @@ namespace WebBasedChat.Server
             }
         }
 
-        public List<Tuple<string, int, DateTime>> Retrieve(int userId, int idxOffset)
+        public List<StoredMessage> Retrieve(int userId, int idxOffset)
         {
-            Tuple<string, int, DateTime> result;
+            StoredMessage result;
             locker.EnterReadLock();
-            var results = new List<Tuple<string, int, DateTime>>();
+            var results = new List<StoredMessage>();
             try
             {
                 if (idxOffset == 0)
                 {
-                    result = _list.LastOrDefault(x => x.Item2 != userId);
+                    result = _list.LastOrDefault(x => x.UserId != userId);
                     results.Add(result);
                 }
                 else

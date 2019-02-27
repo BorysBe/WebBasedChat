@@ -4,6 +4,7 @@ using System.Linq;
 using TechTalk.SpecFlow;
 using WebBasedChat.Client.Models;
 using WebBasedChat.Communication;
+using WebBasedChat.Communication.Contracts;
 using WebBasedChat.Server;
 
 namespace WebBasedChat.Specification
@@ -203,7 +204,7 @@ namespace WebBasedChat.Specification
         public void ThenWasSendTo(string message, int userId)
         {
             var bus = (IClientServiceProxy)ScenarioContext.Current["clientServiceProxy" + userId];
-            Assert.AreEqual(message, bus.Last().ElementAt(0).Item1);
+            Assert.AreEqual(message, bus.Last().ElementAt(0).Content);
             TearDown(userId);
         }
 
@@ -216,17 +217,17 @@ namespace WebBasedChat.Specification
             int rowNo = 0;
             foreach (var row in table.Rows)
             {
-                Assert.AreEqual(row["message"], tuples.ElementAt(rowNo).Item1);
+                Assert.AreEqual(row["message"], tuples.ElementAt(rowNo).Content);
                 Assert.AreEqual(row["nick"], MapIdToNickname(tuples.ElementAt(rowNo)));
-                Assert.IsInstanceOf<DateTime>(tuples.ElementAt(rowNo).Item3);
+                Assert.IsInstanceOf<DateTime>(tuples.ElementAt(rowNo).DateTime);
                 rowNo++;
             }
             TearDown(userId);
         }
         
-        private static string MapIdToNickname(Tuple<string, int, DateTime> tuple)
+        private static string MapIdToNickname(Message tuple)
         {
-            return $"User {tuple.Item2}";
+            return $"User {tuple.UserId}";
         }
     }
 }

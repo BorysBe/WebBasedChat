@@ -1,7 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ServiceModel;
+using WebBasedChat.Communication;
 using WebBasedChat.Server.Contracts;
+using Message = WebBasedChat.Server.Contracts.Message;
 
 namespace WebBasedChat.Server
 {
@@ -15,7 +16,7 @@ namespace WebBasedChat.Server
 
         private readonly IRepository _repository;
 
-        public IEnumerable<Tuple<string, int, DateTime>> GetMessages(int userId, int idxOffset)
+        public IEnumerable<StoredMessage> GetMessages(int userId, int idxOffset)
         {
             return _repository.Retrieve(userId, idxOffset);
         }
