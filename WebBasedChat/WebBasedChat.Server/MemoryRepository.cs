@@ -13,6 +13,7 @@ namespace WebBasedChat.Server
         private static ReaderWriterLockSlim locker = new ReaderWriterLockSlim(); // probably more readers then writers
 
         private static readonly Dictionary<int, string> _rooms = new Dictionary<int, string>();
+        private static readonly Dictionary<int, string> _users = new Dictionary<int, string>();
 
         public void Create(string message, int userId)
         {
@@ -27,16 +28,40 @@ namespace WebBasedChat.Server
             }
         }
 
-        static int roomId = 0;
+        static int _roomId = 0;
+        static int _userId = 0;
 
-        public int Create(string roomName)
+        private object _userLock;
+
+        public int CreateRoom(string roomName)
         {
+            if (_roomId == int.MaxValue)
+            {
+                return -1;
+            }
+
             lock (this)
             {
-                _rooms.Add(roomId, roomName);
+                _rooms.Add(_roomId, roomName);
             }
             
-            return roomId++;
+            return _roomId++;
+        }
+
+        public int CreateUser(string userName)
+        {
+            if (_userId == int.MaxValue)
+            {
+                return -1;
+            }
+
+            _userLock = new object();
+            lock (_userLock)
+            {
+                _users.Add(_userId, userName);
+            }
+
+            return _userId++;
         }
 
         public IEnumerable<KeyValuePair<int, string>> Retrieve()

@@ -1,5 +1,7 @@
-﻿using NUnit.Framework;
+﻿using System.Collections.Generic;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
+using WebBasedChat.Client.Factories.Contracts;
 using WebBasedChat.Client.Models;
 
 namespace WebBasedChat.Specification
@@ -9,8 +11,8 @@ namespace WebBasedChat.Specification
         [Given(@"At least one chat room exists")]
         public void GivenAtLeastOneChatRoomExists()
         {
-            var state = (State) ScenarioContext.Current["state1"];
-            state.RoomsAreReady = true;
+            var commandFactory = (ICommandFactory)ScenarioContext.Current["commandFactory" + 1];
+            commandFactory.CreateLoadRooms().Execute();
         }
 
         [Then(@"Should see existing chat rooms on Screen (.*)")]

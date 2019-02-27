@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
 using WebBasedChat.Communication;
+using WebBasedChat.Communication.Contracts;
 using WebBasedChat.Server.Contracts;
-using Message = WebBasedChat.Server.Contracts.Message;
 
 namespace WebBasedChat.Server
 {
@@ -28,7 +28,17 @@ namespace WebBasedChat.Server
 
         public int CreateRoom(string roomName)
         {
-            return _repository.Create(roomName);
+            return _repository.CreateRoom(roomName);
+        }
+
+        public IEnumerable<KeyValuePair<int, string>> GetRooms()
+        {
+            return _repository.Retrieve();
+        }
+
+        public int RegisterUser(string userName)
+        {
+            return _repository.CreateUser(userName);
         }
     }
 }

@@ -10,25 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace WebBasedChat.WpfClient
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ChatScreen.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ChatScreen : Window
     {
-        public MainWindow()
+        public ChatScreen()
         {
             InitializeComponent();
-        }
-
-        public static readonly string SampleAddress = "http://" + Environment.MachineName + ":8008/WebBasedChat";
-        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
-        {
-            this.serverIP.Text = SampleAddress;
         }
     }
 }

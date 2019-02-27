@@ -19,5 +19,15 @@ namespace WebBasedChat.Communication.Contracts
         [WebInvoke(Method = "PUT", BodyStyle = WebMessageBodyStyle.WrappedRequest, UriTemplate = "CreateRoom",
             RequestFormat = WebMessageFormat.Json)]
         int CreateRoom(string roomName);
+
+        //todo: create second rest service for rooms and users
+
+        [OperationContract, WebGet]
+        IEnumerable<KeyValuePair<int, string>> GetRooms();
+
+        [OperationContract]
+        [WebInvoke(Method = "PUT", BodyStyle = WebMessageBodyStyle.WrappedRequest, UriTemplate = "RegisterUser",
+            RequestFormat = WebMessageFormat.Json)]
+        int RegisterUser(string userName);
     }
 }

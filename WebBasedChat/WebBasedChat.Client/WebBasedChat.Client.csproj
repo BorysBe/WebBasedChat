@@ -39,12 +39,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\Contracts\ICommand.cs" />
+    <Compile Include="Commands\LoadRoomsCommand.cs" />
     <Compile Include="Factories\Contracts\ICommandFactory.cs" />
-    <Compile Include="Commands\CreateRoomExecute.cs" />
+    <Compile Include="Commands\CreateRoomCommand.cs" />
     <Compile Include="Commands\JoinSelectedRoomCommand.cs" />
     <Compile Include="Commands\ShowRoomScreenCommand.cs" />
     <Compile Include="Commands\SubmitCommand.cs" />
-    <Compile Include="Models\Application.cs" />
+    <Compile Include="Models\CommunicationFacade.cs" />
     <Compile Include="Factories\CommandFactory.cs" />
     <Compile Include="Commands\NullObjectCommand.cs" />
     <Compile Include="Models\State.cs" />

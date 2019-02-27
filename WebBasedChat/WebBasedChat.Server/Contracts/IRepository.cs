@@ -17,7 +17,14 @@ namespace WebBasedChat.Server.Contracts
         /// </summary>
         /// <param name="roomName">room name</param>
         /// <returns>id of created room</returns>
-        int Create(string roomName);
+        int CreateRoom(string roomName);
+
+        /// <summary>
+        /// Create new room
+        /// </summary>
+        /// <param name="userName">room name</param>
+        /// <returns>id of created room</returns>
+        int CreateUser(string userName);
 
         /// <summary>
         /// Get last message
@@ -26,5 +33,11 @@ namespace WebBasedChat.Server.Contracts
         /// <param name="idxOffset">offset from last message</param>
         /// <returns>message row</returns>
         List<StoredMessage> Retrieve(int userId, int idxOffset);
+
+        /// <summary>
+        /// Retrieve rooms with its id's
+        /// </summary>
+        /// <returns>room list</returns>
+        IEnumerable<KeyValuePair<int, string>> Retrieve();
     }
 }

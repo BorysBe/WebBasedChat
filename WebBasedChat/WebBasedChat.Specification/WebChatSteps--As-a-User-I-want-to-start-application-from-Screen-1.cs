@@ -10,7 +10,7 @@ namespace WebBasedChat.Specification
         [When(@"User see application window")]
         public void WhenUserSeeApplicationWindow()
         {
-            var app = (Application) ScenarioContext.Current["application1"];
+            var app = (CommunicationFacade) ScenarioContext.Current["application1"];
             app.Show();
         }
 
@@ -24,14 +24,14 @@ namespace WebBasedChat.Specification
 
         public void TearDown(int userId)
         {
-            var application = (Application) ScenarioContext.Current["application" + userId];
+            var application = (CommunicationFacade) ScenarioContext.Current["application" + userId];
             application.Dispose();
         }
 
         [AfterScenario]
         public void TearDown()
         {
-            var application = (Application) ScenarioContext.Current["application1"];
+            var application = (CommunicationFacade) ScenarioContext.Current["application1"];
             application.Dispose();
             _server?.Dispose();
             _server = null;

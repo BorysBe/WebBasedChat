@@ -9,15 +9,13 @@ namespace WebBasedChat.Communication
 {
     public class ClientServiceProxy : IClientServiceProxy
     {
-        private readonly string _server;
         private readonly int _userId;
         private readonly IChatService _proxy;
 
         public ClientServiceProxy(string server, int userId)
         {
-            _server = server;
             _userId = userId;
-            var factory = new ChannelFactory<IChatService>(new WebHttpBinding(), _server);
+            var factory = new ChannelFactory<IChatService>(new WebHttpBinding(), server);
             factory.Endpoint.Behaviors.Add(new WebHttpBehavior());
             _proxy = factory.CreateChannel();
         }
@@ -35,6 +33,16 @@ namespace WebBasedChat.Communication
         public int CreateRoom(string roomName)
         {
             return _proxy.CreateRoom(roomName);
+        }
+
+        public IEnumerable<KeyValuePair<int, string>> GetRooms()
+        {
+            return _proxy.GetRooms();
+        }
+
+        public int RegisterUser(string userName)
+        {
+            return _proxy.RegisterUser(userName);
         }
     }
 

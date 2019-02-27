@@ -5,5 +5,6 @@ namespace WebBasedChat.Client.Factories.Contracts
     public interface ICommandFactory
     {
         ICommand CreateFrom(string buttonName);
+        ICommand CreateLoadRooms();
     }
 }

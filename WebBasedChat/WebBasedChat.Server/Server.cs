@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ServiceModel;
 using System.ServiceModel.Description;
+using WebBasedChat.Communication.Contracts;
 using WebBasedChat.Server.Contracts;
 
 namespace WebBasedChat.Server

@@ -38,7 +38,7 @@ namespace WebBasedChat.Specification
             ScenarioContext.Current["clientServiceProxy" + userId] = clientServiceProxy;
             var commandFactory = new CommandFactory(state, clientServiceProxy);
             ScenarioContext.Current["commandFactory" + userId] = commandFactory;
-            var application = new Application(state);
+            var application = new CommunicationFacade(state, commandFactory);
             ScenarioContext.Current["application" + userId] = application;
         }
     }

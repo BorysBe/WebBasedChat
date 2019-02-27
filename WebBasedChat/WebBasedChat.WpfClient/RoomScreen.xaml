@@ -1,0 +1,25 @@
+﻿<Window x:Class="WebBasedChat.WpfClient.RoomScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WebBasedChat.WpfClient"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="RoomScreen" Height="300" Width="300"
+        Loaded="RoomScreen_OnLoaded">
+    <Window.Resources>
+        <DataTemplate x:Key="ListBoxItemTemplate">
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <Button Width="80" CommandParameter="{Binding}" Command="{Binding ElementName=Window, Path=OnClickCommand}">Join</Button>
+                    <TextBlock Padding="10,0,0,0" Height="23" Text="{Binding}" VerticalAlignment="Top" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Button Content="Create new room" Height="23" HorizontalAlignment="Left" Margin="8,8,0,0" Name="CreateNewRoom" VerticalAlignment="Top" Width="117" Click="CreateRoom_Click"/>
+        <ListBox ItemTemplate="{StaticResource ListBoxItemTemplate}" Height="215" HorizontalAlignment="Left" Margin="8,45,0,0" Name="RoomList" VerticalAlignment="Top" Width="276">
+        </ListBox>
+    </Grid>
+</Window>

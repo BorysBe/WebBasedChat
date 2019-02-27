@@ -32,7 +32,7 @@ namespace WebBasedChat.Specification
         {
             var state = (State) ScenarioContext.Current["state1"];
             state.Screen = screenNo;
-            var app = (Application) ScenarioContext.Current["application1"];
+            var app = (CommunicationFacade) ScenarioContext.Current["application1"];
             app.Show();
         }
 

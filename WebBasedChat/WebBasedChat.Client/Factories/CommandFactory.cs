@@ -26,7 +26,7 @@ namespace WebBasedChat.Client.Factories
 
             if (buttonName == "Create new room")
             {
-                return new CreateRoomExecute(_clientProxy, _state); ;
+                return new CreateRoomCommand(_clientProxy, _state); ;
             }
 
             if (buttonName == "Submit")
@@ -41,10 +41,15 @@ namespace WebBasedChat.Client.Factories
 
             if (buttonName == "Proceed")
             {
-                return new ShowRoomScreenCommand(_state);
+                return new RegisterNicknameCommand(_clientProxy, _state);
             }
 
             return new NullObjectCommand();
+        }
+
+        public ICommand CreateLoadRooms()
+        {
+            return new LoadRoomsCommand(_clientProxy, _state);
         }
     }
 }

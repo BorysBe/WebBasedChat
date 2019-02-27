@@ -13,14 +13,14 @@ namespace WebBasedChat.Specification
         [When(@"User enter ""(.*)"" message")]
         public void UserEnterMessage(string message)
         {
-            var application = (Application) ScenarioContext.Current["application1"];
+            var application = (CommunicationFacade) ScenarioContext.Current["application1"];
             application.Enter(message);
         }
 
         [Given(@"User (.*) submit messages")]
         public void UserSubmitMessages(int userId, Table table)
         {
-            var application = (Application) ScenarioContext.Current["application" + userId];
+            var application = (CommunicationFacade) ScenarioContext.Current["application" + userId];
             var commandFactory = (ICommandFactory)ScenarioContext.Current["commandFactory" + userId];
 
             foreach (var row in table.Rows)
