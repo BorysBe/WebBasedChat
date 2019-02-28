@@ -11,6 +11,7 @@ namespace WebBasedChat.Client.Models
         public bool RoomsAreReady => Rooms.Any();
         public int? SelectedChatRoom { get; set; }
         public int? JoinedChatRoom { get; set; }
-        public Dictionary<int, string> Rooms { get; set; } = new Dictionary<int, string>();
+        public Dictionary<string, int> Rooms { get; set; } = new Dictionary<string, int>();
+        public int UserId { get; set; }
     }
 }

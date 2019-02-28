@@ -20,6 +20,7 @@ Scenario: Store nickname
 Scenario: Proceed from Screen 1 to Screen 2
 	Given User run application
 	And User see application window
+	And User put a nickname 'demo-nick'
 	When User click "Proceed" button 
 	Then Should see Screen 2
 

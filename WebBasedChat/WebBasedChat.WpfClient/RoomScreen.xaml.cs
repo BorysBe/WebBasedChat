@@ -31,7 +31,7 @@ namespace WebBasedChat.WpfClient
             this.RoomList.Items.Clear();
             foreach (var room in App.StateViewModel.Rooms)
             {
-                this.RoomList.Items.Add(room.Value);
+                this.RoomList.Items.Add(room.Key);
             }
         }
 

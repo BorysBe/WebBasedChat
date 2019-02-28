@@ -29,9 +29,10 @@ namespace WebBasedChat.Client.Commands
             _clientServiceProxy = clientServiceProxy;
         }
 
-        public void Execute()
+        public new void Execute()
         {
             var userId = _clientServiceProxy.RegisterUser(State.Name);
+            State.UserId = userId;
             base.Execute();
         }
     }

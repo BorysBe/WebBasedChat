@@ -127,8 +127,10 @@ this.ScenarioInitialize(scenarioInfo);
 #line 22
  testRunner.And("User see application window", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 23
- testRunner.When("User click \"Proceed\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("User put a nickname \'demo-nick\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 24
+ testRunner.When("User click \"Proceed\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 25
  testRunner.Then("Should see Screen 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -141,16 +143,16 @@ this.ScenarioInitialize(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("See chat rooms on Screen 2", null, new string[] {
                         "As-a-User-I-want-to-see-existing-chat-rooms-on-Screen-2"});
-#line 27
+#line 28
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 28
- testRunner.Given("User run application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 29
- testRunner.And("At least one chat room exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("User run application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 30
- testRunner.And("User see Screen 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("At least one chat room exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 31
+ testRunner.And("User see Screen 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 32
  testRunner.Then("Should see existing chat rooms on Screen 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -165,18 +167,18 @@ this.ScenarioInitialize(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create new room", null, new string[] {
                         "As-a-User-I-want-to-click-\"Create-new-room\"-button-so-that-I-can-create-new-chat-" +
                             "room"});
-#line 34
+#line 35
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 35
- testRunner.Given("User run application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 36
- testRunner.And("User see Screen 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("User run application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 37
- testRunner.And("At least one chat room exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("User see Screen 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 38
- testRunner.When("User click \"Create new room\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("At least one chat room exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 39
+ testRunner.When("User click \"Create new room\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 40
  testRunner.Then("Chat room is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -191,22 +193,22 @@ this.ScenarioInitialize(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Join new room", null, new string[] {
                         "As-a-User-I-want-to-click-\"Create-new-room\"-button-so-that-I-can-join-selected-ch" +
                             "at-room-and-see-Screen-3"});
-#line 42
+#line 43
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 43
- testRunner.Given("User run application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 44
- testRunner.And("User see Screen 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("User run application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 45
- testRunner.And("At least one chat room exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("User see Screen 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 46
- testRunner.And("User select chat room 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("At least one chat room exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 47
- testRunner.When("User click \"Join\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("User select chat room 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 48
- testRunner.Then("User join selected chat room", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("User click \"Join\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 49
+ testRunner.Then("User join selected chat room", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 50
  testRunner.And("User see Screen 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -221,26 +223,26 @@ this.ScenarioInitialize(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send message to roommate", null, new string[] {
                         "As-a-User-I-want-to-enter-some-message-and-press-\"submit\"-button-so-that-I-can-se" +
                             "nd-message-to-other-users-in-the-room"});
-#line 52
+#line 53
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 53
- testRunner.Given("User run application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 54
- testRunner.And("User select chat room 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("User run application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 55
- testRunner.And("User click \"Join\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("User select chat room 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 56
- testRunner.And("User 2 join chat room 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("User click \"Join\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 57
- testRunner.And("User 3 join chat room 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("User 2 join chat room 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 58
- testRunner.When("User enter \"some text\" message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("User 3 join chat room 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 59
- testRunner.And("User click \"Submit\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("User enter \"some text\" message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 60
- testRunner.Then("\"some text\" was send to user 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("User click \"Submit\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 61
+ testRunner.Then("\"some text\" was send to user 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 62
  testRunner.And("\"some text\" was send to user 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -255,18 +257,18 @@ this.ScenarioInitialize(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get last 30 messages", null, new string[] {
                         "As-a-User-I-want-to-see-last-30-previous-messages-in-current-room-with-authors-an" +
                             "d-timestamp"});
-#line 64
+#line 65
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 65
- testRunner.Given("User run application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 66
- testRunner.And("User select chat room 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("User run application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 67
- testRunner.And("User click \"Join\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("User select chat room 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 68
- testRunner.And("User 2 join chat room 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("User click \"Join\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 69
+ testRunner.And("User 2 join chat room 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 70
  testRunner.And("User 3 join chat room 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -301,11 +303,11 @@ this.ScenarioInitialize(scenarioInfo);
                         "Message 14"});
             table1.AddRow(new string[] {
                         "Message 15"});
-#line 70
+#line 71
  testRunner.And("User 2 submit messages", ((string)(null)), table1, "And ");
-#line 87
- testRunner.And("User enter \"some text\" message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 88
+ testRunner.And("User enter \"some text\" message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 89
  testRunner.And("User click \"Submit\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -340,7 +342,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "Message 14"});
             table2.AddRow(new string[] {
                         "Message 15"});
-#line 89
+#line 90
  testRunner.And("User 3 submit messages", ((string)(null)), table2, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -467,7 +469,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "Message 15",
                         "User 3",
                         "<date>"});
-#line 107
+#line 108
  testRunner.Then("Following messages was send to user 1", ((string)(null)), table3, "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -480,16 +482,16 @@ this.ScenarioInitialize(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Go back to screen 2", null, new string[] {
                         "As-a-User-I-want-to-click-Back-button-so-that-I-can-return-to-the-Screen-2"});
-#line 141
+#line 142
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 142
- testRunner.Given("User run application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 143
- testRunner.And("User see Screen 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("User run application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 144
- testRunner.When("User click \"Back\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("User see Screen 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 145
+ testRunner.When("User click \"Back\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 146
  testRunner.Then("Should see Screen 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

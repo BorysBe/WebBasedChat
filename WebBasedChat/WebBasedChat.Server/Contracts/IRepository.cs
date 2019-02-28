@@ -38,6 +38,6 @@ namespace WebBasedChat.Server.Contracts
         /// Retrieve rooms with its id's
         /// </summary>
         /// <returns>room list</returns>
-        IEnumerable<KeyValuePair<int, string>> Retrieve();
+        IEnumerable<KeyValuePair<string, int>> Retrieve();
     }
 }

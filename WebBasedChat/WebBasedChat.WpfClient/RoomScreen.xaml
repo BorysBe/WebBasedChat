@@ -19,7 +19,7 @@
     </Window.Resources>
     <Grid>
         <Button Content="Create new room" Height="23" HorizontalAlignment="Left" Margin="8,8,0,0" Name="CreateNewRoom" VerticalAlignment="Top" Width="117" Click="CreateRoom_Click"/>
-        <ListBox ItemTemplate="{StaticResource ListBoxItemTemplate}" Height="215" HorizontalAlignment="Left" Margin="8,45,0,0" Name="RoomList" VerticalAlignment="Top" Width="276">
+        <ListBox ItemTemplate="{StaticResource ListBoxItemTemplate}" Height="215" HorizontalAlignment="Left" Margin="8,45,0,0" Name="RoomList" VerticalAlignment="Top" Width="276" >
         </ListBox>
     </Grid>
 </Window>

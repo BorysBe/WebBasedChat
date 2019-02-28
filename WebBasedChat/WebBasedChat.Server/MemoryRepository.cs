@@ -12,8 +12,8 @@ namespace WebBasedChat.Server
         private static readonly List<StoredMessage> _list = new List<StoredMessage>();
         private static ReaderWriterLockSlim locker = new ReaderWriterLockSlim(); // probably more readers then writers
 
-        private static readonly Dictionary<int, string> _rooms = new Dictionary<int, string>();
-        private static readonly Dictionary<int, string> _users = new Dictionary<int, string>();
+        private static readonly Dictionary<string, int> _rooms = new Dictionary<string, int>();
+        private static readonly Dictionary<string, int> _users = new Dictionary<string, int>();
 
         public void Create(string message, int userId)
         {
@@ -42,7 +42,7 @@ namespace WebBasedChat.Server
 
             lock (this)
             {
-                _rooms.Add(_roomId, roomName);
+                _rooms.Add(roomName, _roomId);
             }
             
             return _roomId++;
@@ -58,13 +58,18 @@ namespace WebBasedChat.Server
             _userLock = new object();
             lock (_userLock)
             {
-                _users.Add(_userId, userName);
+                if (_users.ContainsKey(userName))
+                {
+                    return _users[userName];
+                }
+
+                _users.Add(userName, _userId);
             }
 
             return _userId++;
         }
 
-        public IEnumerable<KeyValuePair<int, string>> Retrieve()
+        public IEnumerable<KeyValuePair<string, int>> Retrieve()
         {
             lock (this)
             {

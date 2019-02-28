@@ -6,6 +6,7 @@ namespace WebBasedChat.Specification
 {
     public partial class WebChatSteps
     {
+        [Given(@"User put a nickname '(.*)'")]
         [When(@"User put a nickname '(.*)'")]
         public void WhenUserPutANickname(string nick)
         {
