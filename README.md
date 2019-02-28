@@ -1,5 +1,7 @@
 # WebBasedChat
 
+![Server and its clients (WCF)](http://matrix-reliability.eu/projects/images/ClientServer.JPG?raw=true)
+
 Preferred technologies:
 Client/Server WebApi application where server is self hosted WCF service (prefered) (or ASP.NET MVC (could be .NET Core)). Client should be WPF application. 
 You can use any DB or in-memory storage.
@@ -27,3 +29,6 @@ Use cases:
 * As a User I want to enter some message and press "submit" button so that I can send message to other users in the room
 * As a User I want to see last 30 previous messages in current room with authors and timestamp
 * As a User I want to click Back button so that I can return to the Screen 2
+
+![Tests results](http://matrix-reliability.eu/projects/images/specification.JPG?raw=true)
+![Specflow](http://matrix-reliability.eu/projects/images/specflow.JPG?raw=true)
