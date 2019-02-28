@@ -19,6 +19,8 @@ Chat room with text messages from the users in the room. Input for a new message
 Every message should have text, author and sent timestamp.
 Back button should navigate to the Screen 2
 
+![Chat](http://matrix-reliability.eu/projects/images/chat.JPG?raw=true)
+
 Use cases:
 * As a User I want to start application from Screen 1
 * As a User I want to put my nickname on Screen 1
