@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WebBasedChat.WpfClient"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="RoomScreen" Height="300" Width="300"
+        Title="Rooms" Height="300" Width="300"
         Loaded="RoomScreen_OnLoaded">
     <Window.Resources>
         <DataTemplate x:Key="ListBoxItemTemplate">
