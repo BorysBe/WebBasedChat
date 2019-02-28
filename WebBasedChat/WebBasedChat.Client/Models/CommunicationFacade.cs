@@ -52,5 +52,10 @@ namespace WebBasedChat.Client.Models
         {
             _commandFactory.CreateLoadMessages().Execute();
         }
+
+        public void Join()
+        {
+            _commandFactory.CreateFrom("Join").Execute();
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace WebBasedChat.Specification
 
         [Given(@"User '(.*)' put a nickname '(.*)'")]
         public void GivenOtherUserPutANickname(int userId, string nick)
-        {
+        { 
             var state = (State) ScenarioContext.Current["state" + userId];
             state.Name = nick;
         }

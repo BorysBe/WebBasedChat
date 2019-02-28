@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 
 namespace WebBasedChat.WpfClient
@@ -63,9 +64,12 @@ namespace WebBasedChat.WpfClient
         private void Join_OnClick(object sender, RoutedEventArgs e)
         {
             App.StateViewModel.SelectedChatRoom = RoomList.SelectedIndex;
+            App.CommunicationFacade.Join();
             App.CommunicationFacade.Proceed();
+
+
             var chat = new ChatScreen();
-            chat.Title = "Room " + App.StateViewModel.SelectedChatRoom + " | " + App.StateViewModel.Name;
+            chat.Title = "Room " + RoomList.SelectedIndex + " | " + App.StateViewModel.Name;
             chat.ShowDialog();
         }
     }

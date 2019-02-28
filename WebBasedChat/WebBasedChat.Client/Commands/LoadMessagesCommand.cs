@@ -19,7 +19,7 @@ namespace WebBasedChat.Client.Commands
 
         public void Execute()
         {
-            var newMessages = _clientServiceProxy.Last(30);
+            var newMessages = _clientServiceProxy.Last((int)_state.JoinedChatRoom, 30);
             var existingMessages = _state.Messages.ToList();
             existingMessages.AddRange(newMessages);
             

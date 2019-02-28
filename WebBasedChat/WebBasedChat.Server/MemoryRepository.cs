@@ -87,7 +87,7 @@ namespace WebBasedChat.Server
             }
         }
 
-        public List<StoredMessage> Retrieve(int userId, int idxOffset)
+        public List<StoredMessage> Retrieve(int userId, int idxOffset, int roomId)
         {
             locker.EnterReadLock();
             var results = new List<StoredMessage>();

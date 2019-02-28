@@ -16,9 +16,9 @@ namespace WebBasedChat.Server
 
         private readonly IRepository _repository;
 
-        public IEnumerable<StoredMessage> GetMessages(int userId, int idxOffset)
+        public IEnumerable<StoredMessage> GetMessages(int userId, int idxOffset, int roomId)
         {
-            return _repository.Retrieve(userId, idxOffset);
+            return _repository.Retrieve(userId, idxOffset, roomId);
         }
 
         public void Send(Message message)

@@ -21,8 +21,6 @@ namespace WebBasedChat.Specification
         public void UserSubmitMessages(int userId, Table table)
         {
             var application = (CommunicationFacade) ScenarioContext.Current["application" + userId];
-            var commandFactory = (ICommandFactory)ScenarioContext.Current["commandFactory" + userId];
-
             foreach (var row in table.Rows)
             {
                 application.Enter(row["message"]);
@@ -33,9 +31,10 @@ namespace WebBasedChat.Specification
         [Then(@"""(.*)"" was send to user (.*)")]
         public void ThenWasSendTo(string message, int userId)
         {
+            var state = (State)ScenarioContext.Current["state" + userId];
             var clientServiceProxy = (IClientServiceProxy)ScenarioContext.Current["clientServiceProxy" + userId];
-            Assert.AreEqual(message, clientServiceProxy.Last().ElementAt(0).Content);
-            TearDown(userId);
+            var content = clientServiceProxy.Last((int)state.JoinedChatRoom).ElementAt(0).Content;
+            Assert.AreEqual(message, content);
         }
     }
 }

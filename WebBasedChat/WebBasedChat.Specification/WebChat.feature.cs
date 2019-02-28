@@ -149,7 +149,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 29
  testRunner.Given("User run application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 30
- testRunner.And("At least one chat room exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("User click \"Create new room\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 31
  testRunner.And("User see Screen 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 32
@@ -175,10 +175,8 @@ this.ScenarioInitialize(scenarioInfo);
 #line 37
  testRunner.And("User see Screen 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 38
- testRunner.And("At least one chat room exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 39
  testRunner.When("User click \"Create new room\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 40
+#line 39
  testRunner.Then("Chat room is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -193,22 +191,22 @@ this.ScenarioInitialize(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Join new room", null, new string[] {
                         "As-a-User-I-want-to-click-\"Create-new-room\"-button-so-that-I-can-join-selected-ch" +
                             "at-room-and-see-Screen-3"});
-#line 43
+#line 42
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 44
+#line 43
  testRunner.Given("User run application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 45
+#line 44
  testRunner.And("User see Screen 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 45
+ testRunner.And("User click \"Create new room\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 46
- testRunner.And("At least one chat room exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 47
  testRunner.And("User select chat room 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 48
+#line 47
  testRunner.When("User click \"Join\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 49
+#line 48
  testRunner.Then("User join selected chat room", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 50
+#line 49
  testRunner.And("User see Screen 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -223,26 +221,34 @@ this.ScenarioInitialize(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send message to roommate", null, new string[] {
                         "As-a-User-I-want-to-enter-some-message-and-press-\"submit\"-button-so-that-I-can-se" +
                             "nd-message-to-other-users-in-the-room"});
-#line 53
+#line 52
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 54
+#line 53
  testRunner.Given("User run application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 54
+ testRunner.And("User put a nickname \'demo-nick\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 55
- testRunner.And("User select chat room 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("User click \"Proceed\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 56
- testRunner.And("User click \"Join\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("User click \"Create new room\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 57
- testRunner.And("User 2 join chat room 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("User select chat room 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 58
- testRunner.And("User 3 join chat room 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("User click \"Join\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 59
- testRunner.When("User enter \"some text\" message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("User 1 load rooms", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 60
- testRunner.And("User click \"Submit\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("User 2 join chat room 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 61
- testRunner.Then("\"some text\" was send to user 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("User 3 join chat room 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 62
+ testRunner.When("User enter \"some text\" message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 63
+ testRunner.And("User click \"Submit\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 64
+ testRunner.Then("\"some text\" was send to user 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 65
  testRunner.And("\"some text\" was send to user 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -257,19 +263,25 @@ this.ScenarioInitialize(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get last 30 messages", null, new string[] {
                         "As-a-User-I-want-to-see-last-30-previous-messages-in-current-room-with-authors-an" +
                             "d-timestamp"});
-#line 65
+#line 68
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 66
- testRunner.Given("User run application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 67
- testRunner.And("User select chat room 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 68
- testRunner.And("User click \"Join\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 69
- testRunner.And("User 2 join chat room 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("User run application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 70
- testRunner.And("User 3 join chat room 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("User select chat room 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 71
+ testRunner.And("User put a nickname \'demo-nick\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 72
+ testRunner.And("User click \"Proceed\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 73
+ testRunner.And("User click \"Create new room\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 74
+ testRunner.And("User click \"Join\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 75
+ testRunner.And("User 2 join chat room 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 76
+ testRunner.And("User 3 join chat room 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "message"});
@@ -303,11 +315,11 @@ this.ScenarioInitialize(scenarioInfo);
                         "Message 14"});
             table1.AddRow(new string[] {
                         "Message 15"});
-#line 71
+#line 77
  testRunner.And("User 2 submit messages", ((string)(null)), table1, "And ");
-#line 88
+#line 94
  testRunner.And("User enter \"some text\" message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 89
+#line 95
  testRunner.And("User click \"Submit\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -342,7 +354,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "Message 14"});
             table2.AddRow(new string[] {
                         "Message 15"});
-#line 90
+#line 96
  testRunner.And("User 3 submit messages", ((string)(null)), table2, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -351,125 +363,125 @@ this.ScenarioInitialize(scenarioInfo);
                         "date"});
             table3.AddRow(new string[] {
                         "Message 2",
-                        "User 2",
+                        "User2",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 3",
-                        "User 2",
+                        "User2",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 4",
-                        "User 2",
+                        "User2",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 5",
-                        "User 2",
+                        "User2",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 6",
-                        "User 2",
+                        "User2",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 7",
-                        "User 2",
+                        "User2",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 8",
-                        "User 2",
+                        "User2",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 9",
-                        "User 2",
+                        "User2",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 10",
-                        "User 2",
+                        "User2",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 11",
-                        "User 2",
+                        "User2",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 12",
-                        "User 2",
+                        "User2",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 13",
-                        "User 2",
+                        "User2",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 14",
-                        "User 2",
+                        "User2",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 15",
-                        "User 2",
+                        "User2",
                         "<date>"});
             table3.AddRow(new string[] {
                         "some text",
-                        "User 1",
+                        "demo-nick",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 1",
-                        "User 3",
+                        "User3",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 2",
-                        "User 3",
+                        "User3",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 3",
-                        "User 3",
+                        "User3",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 4",
-                        "User 3",
+                        "User3",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 5",
-                        "User 3",
+                        "User3",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 6",
-                        "User 3",
+                        "User3",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 7",
-                        "User 3",
+                        "User3",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 8",
-                        "User 3",
+                        "User3",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 9",
-                        "User 3",
+                        "User3",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 10",
-                        "User 3",
+                        "User3",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 11",
-                        "User 3",
+                        "User3",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 12",
-                        "User 3",
+                        "User3",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 13",
-                        "User 3",
+                        "User3",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 14",
-                        "User 3",
+                        "User3",
                         "<date>"});
             table3.AddRow(new string[] {
                         "Message 15",
-                        "User 3",
+                        "User3",
                         "<date>"});
-#line 108
+#line 114
  testRunner.Then("Following messages was send to user 1", ((string)(null)), table3, "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -482,16 +494,16 @@ this.ScenarioInitialize(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Go back to screen 2", null, new string[] {
                         "As-a-User-I-want-to-click-Back-button-so-that-I-can-return-to-the-Screen-2"});
-#line 142
+#line 148
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 143
+#line 149
  testRunner.Given("User run application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 144
+#line 150
  testRunner.And("User see Screen 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 145
+#line 151
  testRunner.When("User click \"Back\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 146
+#line 152
  testRunner.Then("Should see Screen 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

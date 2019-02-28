@@ -27,7 +27,7 @@ Scenario: Proceed from Screen 1 to Screen 2
 @As-a-User-I-want-to-see-existing-chat-rooms-on-Screen-2
 Scenario: See chat rooms on Screen 2
 	Given User run application
-	And At least one chat room exists
+	And User click "Create new room" button
 	And User see Screen 2
 	Then Should see existing chat rooms on Screen 2
 
@@ -35,7 +35,6 @@ Scenario: See chat rooms on Screen 2
 Scenario: Create new room
 	Given User run application
 	And User see Screen 2
-	And At least one chat room exists
 	When User click "Create new room" button
 	Then Chat room is created
 
@@ -43,7 +42,7 @@ Scenario: Create new room
 Scenario: Join new room
 	Given User run application
 	And User see Screen 2
-	And At least one chat room exists
+	And User click "Create new room" button
 	And User select chat room 1
 	When User click "Join" button
 	Then User join selected chat room 
@@ -52,10 +51,14 @@ Scenario: Join new room
 @As-a-User-I-want-to-enter-some-message-and-press-"submit"-button-so-that-I-can-send-message-to-other-users-in-the-room
 Scenario: Send message to roommate
 	Given User run application
-	And User select chat room 1
+	And User put a nickname 'demo-nick'
+	And User click "Proceed" button 
+	And User click "Create new room" button
+	And User select chat room 0
 	And User click "Join" button
-	And User 2 join chat room 1
-	And User 3 join chat room 1
+	And User 1 load rooms
+	And User 2 join chat room 0
+	And User 3 join chat room 0
 	When User enter "some text" message
 	And User click "Submit" button
 	Then "some text" was send to user 2
@@ -64,10 +67,13 @@ Scenario: Send message to roommate
 @As-a-User-I-want-to-see-last-30-previous-messages-in-current-room-with-authors-and-timestamp
 Scenario: Get last 30 messages
 	Given User run application
-	And User select chat room 1
+	And User select chat room 0
+	And User put a nickname 'demo-nick'
+	And User click "Proceed" button 
+	And User click "Create new room" button
 	And User click "Join" button
-	And User 2 join chat room 1
-	And User 3 join chat room 1
+	And User 2 join chat room 0
+	And User 3 join chat room 0
 	And User 2 submit messages
 	| message | 
 	| Message 1 |
@@ -107,36 +113,36 @@ Scenario: Get last 30 messages
 
 	Then Following messages was send to user 1
 	| message   | nick   | date   |
-	| Message 2 | User 2 | <date> |
-	| Message 3 | User 2 | <date> |
-	| Message 4 | User 2 | <date> |
-	| Message 5 | User 2 | <date> |
-	| Message 6 | User 2 | <date> |
-	| Message 7 | User 2 | <date> |
-	| Message 8 | User 2 | <date> |
-	| Message 9 | User 2 | <date> |
-	| Message 10 | User 2 | <date> |
-	| Message 11 | User 2 | <date> |
-	| Message 12 | User 2 | <date> |
-	| Message 13 | User 2 | <date> |
-	| Message 14 | User 2 | <date> |
-	| Message 15 | User 2 | <date> |
-	| some text | User 1 | <date> |
-	| Message 1 | User 3 | <date> |
-	| Message 2 | User 3 | <date> |
-	| Message 3 | User 3 | <date> |
-	| Message 4 | User 3 | <date> |
-	| Message 5 | User 3 | <date> |
-	| Message 6 | User 3 | <date> |
-	| Message 7 | User 3 | <date> |
-	| Message 8 | User 3 | <date> |
-	| Message 9 | User 3 | <date> |
-	| Message 10 | User 3 | <date> |
-	| Message 11 | User 3 | <date> |
-	| Message 12 | User 3 | <date> |
-	| Message 13 | User 3 | <date> |
-	| Message 14 | User 3 | <date> |
-	| Message 15 | User 3 | <date> |
+	| Message 2 | User2 | <date> |
+	| Message 3 | User2 | <date> |
+	| Message 4 | User2 | <date> |
+	| Message 5 | User2 | <date> |
+	| Message 6 | User2 | <date> |
+	| Message 7 | User2 | <date> |
+	| Message 8 | User2 | <date> |
+	| Message 9 | User2 | <date> |
+	| Message 10 | User2 | <date> |
+	| Message 11 | User2 | <date> |
+	| Message 12 | User2 | <date> |
+	| Message 13 | User2 | <date> |
+	| Message 14 | User2 | <date> |
+	| Message 15 | User2 | <date> |
+	| some text | demo-nick | <date> |
+	| Message 1 | User3 | <date> |
+	| Message 2 | User3 | <date> |
+	| Message 3 | User3 | <date> |
+	| Message 4 | User3 | <date> |
+	| Message 5 | User3 | <date> |
+	| Message 6 | User3 | <date> |
+	| Message 7 | User3 | <date> |
+	| Message 8 | User3 | <date> |
+	| Message 9 | User3 | <date> |
+	| Message 10 | User3 | <date> |
+	| Message 11 | User3 | <date> |
+	| Message 12 | User3 | <date> |
+	| Message 13 | User3 | <date> |
+	| Message 14 | User3 | <date> |
+	| Message 15 | User3 | <date> |
 
 @As-a-User-I-want-to-click-Back-button-so-that-I-can-return-to-the-Screen-2
 Scenario: Go back to screen 2

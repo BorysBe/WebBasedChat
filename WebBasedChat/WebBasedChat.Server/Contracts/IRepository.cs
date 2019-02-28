@@ -31,8 +31,9 @@ namespace WebBasedChat.Server.Contracts
         /// </summary>
         /// <param name="userId">id of requestor</param>
         /// <param name="idxOffset">offset from last message</param>
+        /// <param name="roomId"></param>
         /// <returns>message row</returns>
-        List<StoredMessage> Retrieve(int userId, int idxOffset);
+        List<StoredMessage> Retrieve(int userId, int idxOffset, int roomId);
 
         /// <summary>
         /// Retrieve rooms with its id's

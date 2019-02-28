@@ -8,7 +8,7 @@ namespace WebBasedChat.Communication.Contracts
     public interface IChatService
     {
         [OperationContract, WebGet]
-        IEnumerable<StoredMessage> GetMessages(int userId, int idxOffset);
+        IEnumerable<StoredMessage> GetMessages(int userId, int idxOffset, int roomId);
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, UriTemplate = "Send",

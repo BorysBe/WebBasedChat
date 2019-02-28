@@ -24,9 +24,9 @@ namespace WebBasedChat.Communication
             this._proxy.Send(new Message() { Content = message, UserId = _userId });
         }
 
-        public IEnumerable<StoredMessage> Last(int idxOffset = 0)
+        public IEnumerable<StoredMessage> Last(int roomId, int idxOffset = 0)
         {
-            return _proxy.GetMessages(_userId, idxOffset).ToList();
+            return _proxy.GetMessages(_userId, idxOffset, roomId).ToList();
         }
 
         public int CreateRoom(string roomName)

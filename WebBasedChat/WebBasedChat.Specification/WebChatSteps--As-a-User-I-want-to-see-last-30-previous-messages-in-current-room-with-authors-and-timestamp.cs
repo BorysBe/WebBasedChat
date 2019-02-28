@@ -14,13 +14,13 @@ namespace WebBasedChat.Specification
         {
             var bus = (IClientServiceProxy) ScenarioContext.Current["clientServiceProxy" + userId];
             int minusId = 30;
-            var tuples = bus.Last(minusId);
+            var storedMessages = bus.Last(1, minusId);
             int rowNo = 0;
             foreach (var row in table.Rows)
             {
-                Assert.AreEqual(row["message"], tuples.ElementAt(rowNo).Content);
-                Assert.AreEqual(row["nick"], MapIdToNickname(tuples.ElementAt(rowNo)));
-                Assert.IsInstanceOf<DateTime>(tuples.ElementAt(rowNo).DateTime);
+                Assert.AreEqual(row["message"], storedMessages.ElementAt(rowNo).Content);
+                Assert.AreEqual(row["nick"], storedMessages.ElementAt(rowNo).UserName);
+                Assert.IsInstanceOf<DateTime>(storedMessages.ElementAt(rowNo).DateTime);
                 rowNo++;
             }
 
