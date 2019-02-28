@@ -31,7 +31,7 @@ namespace WebBasedChat.Server
             return _repository.CreateRoom(roomName);
         }
 
-        public IEnumerable<KeyValuePair<string, int>> GetRooms()
+        public IEnumerable<KeyValuePair<int, string>> GetRooms()
         {
             return _repository.Retrieve();
         }

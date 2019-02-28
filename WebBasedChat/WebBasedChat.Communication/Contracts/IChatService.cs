@@ -23,7 +23,7 @@ namespace WebBasedChat.Communication.Contracts
         //todo: create second rest service for rooms and users
 
         [OperationContract, WebGet]
-        IEnumerable<KeyValuePair<string, int>> GetRooms();
+        IEnumerable<KeyValuePair<int, string>> GetRooms();
 
         [OperationContract]
         [WebInvoke(Method = "PUT", BodyStyle = WebMessageBodyStyle.WrappedRequest, UriTemplate = "RegisterUser",

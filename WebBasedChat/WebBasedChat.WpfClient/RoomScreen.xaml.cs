@@ -53,7 +53,7 @@ namespace WebBasedChat.WpfClient
             App.StateViewModel.SelectedChatRoom = RoomList.SelectedIndex;
             App.CommunicationFacade.Proceed();
             var chat = new ChatScreen();
-            chat.Title = App.StateViewModel.JoinedChatRoom.ToString();
+            chat.Title = "Room " + App.StateViewModel.SelectedChatRoom.ToString();
             chat.ShowDialog();
         }
     }

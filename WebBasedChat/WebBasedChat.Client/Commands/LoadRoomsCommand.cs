@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using WebBasedChat.Client.Commands.Contracts;
 using WebBasedChat.Client.Models;
+using WebBasedChat.Communication;
 using WebBasedChat.Communication.Contracts;
 
 namespace WebBasedChat.Client.Commands

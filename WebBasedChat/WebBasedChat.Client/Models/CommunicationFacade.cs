@@ -42,5 +42,10 @@ namespace WebBasedChat.Client.Models
         {
             _commandFactory.CreateFrom("Create new room").Execute();
         }
+
+        public void LoadMesages()
+        {
+            _commandFactory.CreateLoadMessages().Execute();
+        }
     }
 }

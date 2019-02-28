@@ -12,8 +12,8 @@ namespace WebBasedChat.Server
         private static readonly List<StoredMessage> _list = new List<StoredMessage>();
         private static ReaderWriterLockSlim locker = new ReaderWriterLockSlim(); // probably more readers then writers
 
-        private static readonly Dictionary<string, int> _rooms = new Dictionary<string, int>();
-        private static readonly Dictionary<string, int> _users = new Dictionary<string, int>();
+        private static readonly Dictionary<int, string> Rooms = new Dictionary<int, string>();
+        private static readonly Dictionary<int, string> Users = new Dictionary<int, string>();
 
         public void Create(string message, int userId)
         {
@@ -28,52 +28,46 @@ namespace WebBasedChat.Server
             }
         }
 
-        static int _roomId = 0;
-        static int _userId = 0;
-
-        private object _userLock;
+        private object _userLock = new object ();
+        private object _roomLock = new object();
 
         public int CreateRoom(string roomName)
         {
-            if (_roomId == int.MaxValue)
+            var roomId = roomName.GetHashCode();
+            lock (_roomLock)
             {
-                return -1;
-            }
+                if (Rooms.ContainsKey(roomId))
+                {
+                    return roomId;
+                }
 
-            lock (this)
-            {
-                _rooms.Add(roomName, _roomId);
+                Rooms.Add(roomId, roomName);
             }
             
-            return _roomId++;
+            return roomId;
         }
 
         public int CreateUser(string userName)
         {
-            if (_userId == int.MaxValue)
-            {
-                return -1;
-            }
-
-            _userLock = new object();
+            var userId = userName.GetHashCode();
             lock (_userLock)
             {
-                if (_users.ContainsKey(userName))
+                if (Users.ContainsKey(userId))
                 {
-                    return _users[userName];
+                    return userId;
                 }
 
-                _users.Add(userName, _userId);
+                Users.Add(userId, userName);
             }
 
-            return _userId++;
+            return userId;
         }
 
-        public IEnumerable<KeyValuePair<string, int>> Retrieve()
+        public IEnumerable<KeyValuePair<int, string>> Retrieve()
         {
             lock (this)
             {
-                var pairs = _rooms.AsEnumerable();
+                var pairs = Rooms.AsEnumerable();
                 return pairs;
             }
         }

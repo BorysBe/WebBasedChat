@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using WebBasedChat.Communication;
 
 namespace WebBasedChat.Client.Models
 {
@@ -11,7 +12,8 @@ namespace WebBasedChat.Client.Models
         public bool RoomsAreReady => Rooms.Any();
         public int? SelectedChatRoom { get; set; }
         public int? JoinedChatRoom { get; set; }
-        public Dictionary<string, int> Rooms { get; set; } = new Dictionary<string, int>();
+        public Dictionary<int, string> Rooms { get; set; } = new Dictionary<int, string>();
         public int UserId { get; set; }
+        public IEnumerable<StoredMessage> Messages { get; set; }
     }
 }

@@ -35,7 +35,7 @@ namespace WebBasedChat.Communication
             return _proxy.CreateRoom(roomName);
         }
 
-        public IEnumerable<KeyValuePair<string, int>> GetRooms()
+        public IEnumerable<KeyValuePair<int, string>> GetRooms()
         {
             return _proxy.GetRooms();
         }

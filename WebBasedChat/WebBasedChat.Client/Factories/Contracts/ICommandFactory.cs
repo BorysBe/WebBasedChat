@@ -6,5 +6,6 @@ namespace WebBasedChat.Client.Factories.Contracts
     {
         ICommand CreateFrom(string buttonName);
         ICommand CreateLoadRooms();
+        ICommand CreateLoadMessages();
     }
 }

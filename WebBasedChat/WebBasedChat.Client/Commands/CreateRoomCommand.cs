@@ -21,9 +21,9 @@ namespace WebBasedChat.Client.Commands
         {
             var roomName = "room" + _roomIdx++;
             var roomId = _clientServiceProxy.CreateRoom(roomName);
-            if (!_state.Rooms.ContainsKey(roomName))
+            if (!_state.Rooms.ContainsKey(roomId))
             {
-                _state.Rooms.Add(roomName, roomId);
+                _state.Rooms.Add(roomId, roomName);
             }
 
             _state.SelectedChatRoom = roomId;

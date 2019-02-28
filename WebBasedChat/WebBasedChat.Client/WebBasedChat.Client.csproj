@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\Contracts\ICommand.cs" />
+    <Compile Include="Commands\LoadMessagesCommand.cs" />
     <Compile Include="Commands\LoadRoomsCommand.cs" />
     <Compile Include="Commands\RegisterNicknameCommand.cs" />
     <Compile Include="Factories\Contracts\ICommandFactory.cs" />

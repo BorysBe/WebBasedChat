@@ -51,5 +51,10 @@ namespace WebBasedChat.Client.Factories
         {
             return new LoadRoomsCommand(_clientProxy, _state);
         }
+
+        public ICommand CreateLoadMessages()
+        {
+            return new LoadMessagesCommand(_clientProxy, _state);
+        }
     }
 }
