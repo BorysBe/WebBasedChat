@@ -8,5 +8,8 @@ namespace WebBasedChat.Communication
     {
         [DataMember]
         public DateTime DateTime { get; set; }
+
+        [DataMember]
+        public string UserName { get; set; }
     }
 }

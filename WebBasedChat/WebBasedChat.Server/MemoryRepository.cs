@@ -17,10 +17,25 @@ namespace WebBasedChat.Server
 
         public void Create(string message, int userId)
         {
+            string mappedUserName = string.Empty;
+            lock (_userLock)
+            {
+                if (Users.ContainsKey(userId))
+                {
+                    mappedUserName = Users[userId];
+                }
+            }
+
             locker.EnterWriteLock();
             try
             {
-                _list.Add(new StoredMessage () { Content = message, UserId = userId, DateTime = DateTime.UtcNow } );
+                _list.Add(new StoredMessage ()
+                {
+                    Content = message,
+                    UserId = userId,
+                    UserName = mappedUserName,
+                    DateTime = DateTime.UtcNow
+                } );
             }
             finally
             {
@@ -74,11 +89,11 @@ namespace WebBasedChat.Server
 
         public List<StoredMessage> Retrieve(int userId, int idxOffset)
         {
-            StoredMessage result;
             locker.EnterReadLock();
             var results = new List<StoredMessage>();
             try
             {
+                StoredMessage result;
                 if (idxOffset == 0)
                 {
                     result = _list.LastOrDefault(x => x.UserId != userId);
@@ -86,10 +101,19 @@ namespace WebBasedChat.Server
                 }
                 else
                 {
-                    for (int idx = idxOffset; idx > 0; idx--)
+                    if (_list.Any())
                     {
-                        result = _list.ElementAt(_list.Count - idx);
-                        results.Add(result);
+                        if (_list.Count <= idxOffset)
+                        {
+                            results.AddRange(_list);
+                            return results;
+                        }
+
+                        for (int idx = idxOffset; idx > 0; idx--)
+                        {
+                            result = _list.ElementAt(_list.Count - idx);
+                            results.Add(result);
+                        }
                     }
                 }
             }
@@ -98,7 +122,7 @@ namespace WebBasedChat.Server
                 locker.ExitReadLock();
             }
 
-           return results;
+            return results;
         }
     }
 }

@@ -24,6 +24,11 @@ namespace WebBasedChat.Client.Models
             this.State.LastMessage = message;
         }
 
+        public void Submit()
+        {
+            _commandFactory.CreateFrom("Submit").Execute();
+        }
+
         public void Show()
         {
         }

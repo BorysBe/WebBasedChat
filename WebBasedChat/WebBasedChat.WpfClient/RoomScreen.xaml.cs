@@ -11,6 +11,18 @@ namespace WebBasedChat.WpfClient
         public RoomScreen()
         {
             InitializeComponent();
+            CreateRefresher();
+        }
+
+        private void CreateRefresher()
+        {
+            System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+            dispatcherTimer.Tick += delegate
+            {
+                ReloadRooms();
+            };
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 5);
+            dispatcherTimer.Start();
         }
 
         private void RoomScreen_OnLoaded(object sender, RoutedEventArgs e)
@@ -31,7 +43,7 @@ namespace WebBasedChat.WpfClient
             this.RoomList.Items.Clear();
             foreach (var room in App.StateViewModel.Rooms)
             {
-                this.RoomList.Items.Add(room.Key);
+                this.RoomList.Items.Add(room.Value);
             }
         }
 
@@ -53,7 +65,7 @@ namespace WebBasedChat.WpfClient
             App.StateViewModel.SelectedChatRoom = RoomList.SelectedIndex;
             App.CommunicationFacade.Proceed();
             var chat = new ChatScreen();
-            chat.Title = "Room " + App.StateViewModel.SelectedChatRoom.ToString();
+            chat.Title = "Room " + App.StateViewModel.SelectedChatRoom + " | " + App.StateViewModel.Name;
             chat.ShowDialog();
         }
     }

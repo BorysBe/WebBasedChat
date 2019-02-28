@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Windows;
 
 namespace WebBasedChat.WpfClient
@@ -12,6 +11,7 @@ namespace WebBasedChat.WpfClient
         public ChatScreen()
         {
             InitializeComponent();
+            CreateRefresher();
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -22,16 +22,50 @@ namespace WebBasedChat.WpfClient
 
         private void ChatScreen_OnLoaded(object sender, RoutedEventArgs e)
         {
-            App.CommunicationFacade.LoadMesages();
-            foreach (var message in App.StateViewModel.Messages.Where(x=> x.RoomId == App.StateViewModel.JoinedChatRoom))
+            ReloadMessages();
+        }
+
+        private void ReloadMessages()
+        {
+            Messages.Text = "";
+            try
             {
-                Messages.Text += message.UserId + " <" + message.DateTime + "> " + Environment.NewLine;
+                App.CommunicationFacade.LoadMesages();
+                foreach (var message in App.StateViewModel.Messages)
+                {
+                    Messages.Text += message.UserName + " <" + message.DateTime + "> : " + message.Content + Environment.NewLine;
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
             }
         }
 
         private void Submit_OnClick(object sender, RoutedEventArgs e)
         {
-            App.CommunicationFacade.Enter(Message.Text);
+            try
+            {
+                App.CommunicationFacade.Enter(Message.Text);
+                App.CommunicationFacade.Submit();
+                Message.Text = string.Empty;
+                ReloadMessages();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+
+        private void CreateRefresher()
+        {
+            System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+            dispatcherTimer.Tick += delegate
+            {
+                ReloadMessages();;
+            };
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 5);
+            dispatcherTimer.Start();
         }
     }
 }

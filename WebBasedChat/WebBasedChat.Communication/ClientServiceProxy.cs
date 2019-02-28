@@ -9,12 +9,11 @@ namespace WebBasedChat.Communication
 {
     public class ClientServiceProxy : IClientServiceProxy
     {
-        private readonly int _userId;
         private readonly IChatService _proxy;
+        private int _userId;
 
-        public ClientServiceProxy(string server, int userId)
+        public ClientServiceProxy(string server)
         {
-            _userId = userId;
             var factory = new ChannelFactory<IChatService>(new WebHttpBinding(), server);
             factory.Endpoint.Behaviors.Add(new WebHttpBehavior());
             _proxy = factory.CreateChannel();
@@ -22,7 +21,7 @@ namespace WebBasedChat.Communication
 
         public void Send(string message)
         {
-            this._proxy.Send(new Message() { Content = message, UserId = _userId});
+            this._proxy.Send(new Message() { Content = message, UserId = _userId });
         }
 
         public IEnumerable<StoredMessage> Last(int idxOffset = 0)
@@ -42,7 +41,8 @@ namespace WebBasedChat.Communication
 
         public int RegisterUser(string userName)
         {
-            return _proxy.RegisterUser(userName);
+            _userId = _proxy.RegisterUser(userName);
+            return _userId;
         }
     }
 

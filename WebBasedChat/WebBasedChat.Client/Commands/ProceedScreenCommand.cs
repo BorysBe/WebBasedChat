@@ -17,6 +17,7 @@ namespace WebBasedChat.Client.Commands
         {
             switch (State.Screen)
             {
+                case 0: 
                 case 1: State.Screen = 2;
                     break;
                 case 2: State.Screen = 3;

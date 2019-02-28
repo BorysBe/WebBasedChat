@@ -14,6 +14,6 @@ namespace WebBasedChat.Client.Models
         public int? JoinedChatRoom { get; set; }
         public Dictionary<int, string> Rooms { get; set; } = new Dictionary<int, string>();
         public int UserId { get; set; }
-        public IEnumerable<StoredMessage> Messages { get; set; }
+        public List<StoredMessage> Messages { get; set; } = new List<StoredMessage>();
     }
 }

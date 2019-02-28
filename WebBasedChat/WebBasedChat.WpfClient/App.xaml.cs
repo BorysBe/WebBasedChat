@@ -18,7 +18,7 @@ namespace WebBasedChat.WpfClient
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
             StateViewModel = new State();
-            CommunicationFacade = new CommunicationFacade(StateViewModel, new CommandFactory(StateViewModel, new ClientServiceProxy(SampleAddress, 1))); 
+            CommunicationFacade = new CommunicationFacade(StateViewModel, new CommandFactory(StateViewModel, new ClientServiceProxy(SampleAddress))); 
         }
     }
 }

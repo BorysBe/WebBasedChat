@@ -34,7 +34,7 @@ namespace WebBasedChat.Specification
                 _server = new Server.Server(new MemoryRepository());
             }
             ScenarioContext.Current["state" + userId] = state;
-            var clientServiceProxy = new ClientServiceProxy(_server.Address.OriginalString, userId);
+            var clientServiceProxy = new ClientServiceProxy(_server.Address.OriginalString);
             ScenarioContext.Current["clientServiceProxy" + userId] = clientServiceProxy;
             var commandFactory = new CommandFactory(state, clientServiceProxy);
             ScenarioContext.Current["commandFactory" + userId] = commandFactory;

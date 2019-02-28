@@ -26,7 +26,7 @@ namespace WebBasedChat.Specification
             foreach (var row in table.Rows)
             {
                 application.Enter(row["message"]);
-                commandFactory.CreateFrom("Submit").Execute();
+                application.Submit();
             }
         }
 
