@@ -15,11 +15,9 @@ namespace WebBasedChat.Client.Commands
             _state = state;
         }
 
-        private static int _roomIdx;
-
         public void Execute()
         {
-            var roomName = "Room " + _roomIdx++;
+            var roomName = "Room " + _state.Rooms.Count;
             var roomId = _clientServiceProxy.CreateRoom(roomName);
             if (!_state.Rooms.ContainsKey(roomId))
             {
