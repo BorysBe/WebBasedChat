@@ -7,6 +7,12 @@ namespace WebBasedChat.Specification
     public partial class WebChatSteps
     {
         [Given(@"User put a nickname '(.*)'")]
+        public void GivenUserPutANickname(string nick)
+        {
+            var state = (State)ScenarioContext.Current["state1"];
+            state.Name = nick;
+        }
+
         [When(@"User put a nickname '(.*)'")]
         public void WhenUserPutANickname(string nick)
         {

@@ -36,7 +36,7 @@ namespace WebBasedChat.Client.Factories
 
             if (buttonName == "Back")
             {
-                return new ShowRoomScreenCommand(_state);
+                return new ProceedScreenCommand(_state);
             }
 
             if (buttonName == "Proceed")

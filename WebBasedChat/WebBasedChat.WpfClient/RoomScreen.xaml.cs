@@ -47,5 +47,14 @@ namespace WebBasedChat.WpfClient
             }
             ReloadRooms();
         }
+
+        private void Join_OnClick(object sender, RoutedEventArgs e)
+        {
+            App.StateViewModel.SelectedChatRoom = RoomList.SelectedIndex;
+            App.CommunicationFacade.Proceed();
+            var chat = new ChatScreen();
+            chat.Title = App.StateViewModel.JoinedChatRoom.ToString();
+            chat.ShowDialog();
+        }
     }
 }

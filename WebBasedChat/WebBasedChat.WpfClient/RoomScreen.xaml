@@ -11,7 +11,7 @@
         <DataTemplate x:Key="ListBoxItemTemplate">
             <Grid>
                 <StackPanel Orientation="Horizontal">
-                    <Button Width="80" CommandParameter="{Binding}" Command="{Binding ElementName=Window, Path=OnClickCommand}">Join</Button>
+                    <Label BorderThickness="1" BorderBrush="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="80" MouseUp="Join_OnClick" Background="Silver">Join</Label>
                     <TextBlock Padding="10,0,0,0" Height="23" Text="{Binding}" VerticalAlignment="Top" />
                 </StackPanel>
             </Grid>

@@ -1,26 +1,10 @@
-﻿using System.Globalization;
-using WebBasedChat.Client.Commands.Contracts;
+﻿using WebBasedChat.Client.Commands.Contracts;
 using WebBasedChat.Client.Models;
 using WebBasedChat.Communication.Contracts;
 
 namespace WebBasedChat.Client.Commands
 {
-    public class ShowRoomScreenCommand : ICommand
-    {
-        protected readonly State State;
-
-        public ShowRoomScreenCommand(State state)
-        {
-            State = state;
-        }
-
-        public void Execute()
-        {
-            State.Screen = 2;
-        }
-    }
-
-    public class RegisterNicknameCommand : ShowRoomScreenCommand, ICommand
+    public class RegisterNicknameCommand : ProceedScreenCommand, ICommand
     {
         private readonly IClientServiceProxy _clientServiceProxy;
 

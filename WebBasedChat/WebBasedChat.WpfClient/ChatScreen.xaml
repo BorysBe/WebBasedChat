@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WebBasedChat.WpfClient"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="ChatScreen" Height="768" Width="500">
+        Title="ChatScreen" Height="500" Width="500">
     <Grid>
         <TextBox Height="231" HorizontalAlignment="Left" Margin="11,38,0,0" Name="ChatBox" VerticalAlignment="Top" Width="473" IsReadOnly="True" VerticalScrollBarVisibility="Visible" />
         <Label Content="Message:" Height="28" HorizontalAlignment="Left" Margin="5,272,0,0" VerticalAlignment="Top" />
         <TextBox Height="79" HorizontalAlignment="Left" Margin="11,300,0,0" Name="Message" VerticalAlignment="Top" Width="473" />
         <Button Content="Submit" Height="23" HorizontalAlignment="Left" Margin="11,384,0,0" Name="Submit" VerticalAlignment="Top" Width="117"/>
+        <Button Content="Back" Height="23" HorizontalAlignment="Left" Margin="11,430,0,0" Name="Back" VerticalAlignment="Top" Width="117" Click="Back_Click"/>
     </Grid>
 </Window>

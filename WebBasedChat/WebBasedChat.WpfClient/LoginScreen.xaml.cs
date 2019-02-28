@@ -28,7 +28,6 @@ namespace WebBasedChat.WpfClient
                     var roomScreen = new RoomScreen();
                     roomScreen.Title = Nickname.Text;
                     roomScreen.ShowDialog();
-
                 }
                 catch (Exception exception)
                 {
