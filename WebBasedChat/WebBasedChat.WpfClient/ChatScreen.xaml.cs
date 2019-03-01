@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace WebBasedChat.WpfClient
 {
@@ -8,6 +9,8 @@ namespace WebBasedChat.WpfClient
     /// </summary>
     public partial class ChatScreen : Window
     {
+        private DispatcherTimer _dispatcherTimer;
+
         public ChatScreen()
         {
             InitializeComponent();
@@ -16,7 +19,10 @@ namespace WebBasedChat.WpfClient
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
+            _dispatcherTimer.Stop();
             App.CommunicationFacade.Proceed();
+            App.StateViewModel.Messages.Clear();
+            Messages.Text = "";
             Close();
         }
 
@@ -33,7 +39,7 @@ namespace WebBasedChat.WpfClient
                 App.CommunicationFacade.LoadMessages();
                 foreach (var message in App.StateViewModel.Messages)
                 {
-                    Messages.Text += message.UserName + " <" + message.DateTime + "> : " + message.Content + Environment.NewLine;
+                    Messages.Text += $"{message.RoomName} - " + message.UserName + " <" + message.DateTime + "> : " + message.Content + Environment.NewLine;
                 }
             }
             catch (Exception exception)
@@ -59,13 +65,13 @@ namespace WebBasedChat.WpfClient
 
         private void CreateRefresher()
         {
-            System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
-            dispatcherTimer.Tick += delegate
+            _dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+            _dispatcherTimer.Tick += delegate
             {
                 ReloadMessages();;
             };
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 5);
-            dispatcherTimer.Start();
+            _dispatcherTimer.Interval = new TimeSpan(0, 0, 5);
+            _dispatcherTimer.Start();
         }
     }
 }

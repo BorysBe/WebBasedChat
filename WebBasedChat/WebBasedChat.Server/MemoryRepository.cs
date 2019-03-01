@@ -10,7 +10,7 @@ namespace WebBasedChat.Server
     public class MemoryRepository : IRepository
     {
         private static readonly List<StoredMessage> _list = new List<StoredMessage>();
-        private static ReaderWriterLockSlim locker = new ReaderWriterLockSlim(); // probably more readers then writers
+        private static readonly ReaderWriterLockSlim locker = new ReaderWriterLockSlim(); // probably more readers then writers
 
         private static readonly Dictionary<int, string> Rooms = new Dictionary<int, string>();
         private static readonly Dictionary<int, string> Users = new Dictionary<int, string>();
@@ -18,13 +18,10 @@ namespace WebBasedChat.Server
         public void Create(string message, int userId, int roomId)
         {
             string mappedUserName = string.Empty;
-            lock (_userLock)
-            {
-                if (Users.ContainsKey(userId))
-                {
-                    mappedUserName = Users[userId];
-                }
-            }
+            mappedUserName = GetUserName(userId, mappedUserName);
+
+            string mappedRoomName = string.Empty;
+            mappedRoomName = GetRoomName(roomId, mappedRoomName);
 
             locker.EnterWriteLock();
             try
@@ -35,13 +32,40 @@ namespace WebBasedChat.Server
                     UserId = userId,
                     UserName = mappedUserName,
                     DateTime = DateTime.UtcNow,
-                    RoomId = roomId
+                    RoomId = roomId,
+                    RoomName = mappedRoomName
                 });
             }
             finally
             {
                 locker.ExitWriteLock();
             }
+        }
+
+        private string GetRoomName(int roomId, string mappedRoomName)
+        {
+            lock (_roomLock)
+            {
+                if (Rooms.ContainsKey(roomId))
+                {
+                    mappedRoomName = Rooms[roomId];
+                }
+            }
+
+            return mappedRoomName;
+        }
+
+        private string GetUserName(int userId, string mappedUserName)
+        {
+            lock (_userLock)
+            {
+                if (Users.ContainsKey(userId))
+                {
+                    mappedUserName = Users[userId];
+                }
+            }
+
+            return mappedUserName;
         }
 
         private object _userLock = new object();

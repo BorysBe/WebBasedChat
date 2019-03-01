@@ -41,7 +41,7 @@ namespace WebBasedChat.Client.Factories
 
             if (buttonName == "Proceed")
             {
-                if (_state.Screen == 1 || _state.Screen == 2)
+                if (_state.Screen == 1 || _state.Screen == 0)
                 {
                     return new RegisterNicknameCommand(_clientProxy, _state);
                 }
