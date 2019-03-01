@@ -39,8 +39,6 @@ namespace WebBasedChat.Specification
         {
             var state = (State) ScenarioContext.Current["state1"];
             state.Screen = screenNo;
-            var app = (CommunicationFacade) ScenarioContext.Current["application1"];
-            app.Show();
         }
 
         [Then(@"User see Screen (.*)")]

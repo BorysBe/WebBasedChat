@@ -15,7 +15,7 @@ namespace WebBasedChat.Server
         private static readonly Dictionary<int, string> Rooms = new Dictionary<int, string>();
         private static readonly Dictionary<int, string> Users = new Dictionary<int, string>();
 
-        public void Create(string message, int userId)
+        public void Create(string message, int userId, int roomId)
         {
             string mappedUserName = string.Empty;
             lock (_userLock)
@@ -29,13 +29,14 @@ namespace WebBasedChat.Server
             locker.EnterWriteLock();
             try
             {
-                _list.Add(new StoredMessage ()
+                _list.Add(new StoredMessage()
                 {
                     Content = message,
                     UserId = userId,
                     UserName = mappedUserName,
-                    DateTime = DateTime.UtcNow
-                } );
+                    DateTime = DateTime.UtcNow,
+                    RoomId = roomId
+                });
             }
             finally
             {
@@ -43,7 +44,7 @@ namespace WebBasedChat.Server
             }
         }
 
-        private object _userLock = new object ();
+        private object _userLock = new object();
         private object _roomLock = new object();
 
         public int CreateRoom(string roomName)
@@ -58,7 +59,7 @@ namespace WebBasedChat.Server
 
                 Rooms.Add(roomId, roomName);
             }
-            
+
             return roomId;
         }
 
@@ -96,23 +97,35 @@ namespace WebBasedChat.Server
                 StoredMessage result;
                 if (idxOffset == 0)
                 {
-                    result = _list.LastOrDefault(x => x.UserId != userId);
-                    results.Add(result);
+                    result = _list.LastOrDefault(x => x.UserId != userId && x.RoomId == roomId);
+                    if (result != null)
+                    {
+                        results.Add(result);
+                    }
                 }
                 else
                 {
-                    if (_list.Any())
+                    var storedMessages = _list
+                        .Where(x => x.RoomId == roomId)
+                        .Skip(_list.Count - idxOffset)
+                        .ToList();
+
+                    var count = storedMessages.Count();
+                    if (count > 0)
                     {
-                        if (_list.Count <= idxOffset)
+                        if (count <= idxOffset)
                         {
-                            results.AddRange(_list);
+                            results.AddRange(storedMessages);
                             return results;
                         }
 
                         for (int idx = idxOffset; idx > 0; idx--)
                         {
-                            result = _list.ElementAt(_list.Count - idx);
-                            results.Add(result);
+                            result = storedMessages.ElementAt(idx);
+                            if (result != null)
+                            {
+                                results.Add(result);
+                            }
                         }
                     }
                 }

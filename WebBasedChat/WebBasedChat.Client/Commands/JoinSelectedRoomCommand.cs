@@ -15,7 +15,8 @@ namespace WebBasedChat.Client.Commands
 
         public void Execute()
         {
-            _state.JoinedChatRoom = _state.SelectedChatRoom;
+            var joinedChatRoom = _state.Rooms.ElementAt(_state.SelectedChatRoom ?? 0);
+            _state.JoinedChatRoom = joinedChatRoom.Key;
             _state.Screen = 3;
         }
     }

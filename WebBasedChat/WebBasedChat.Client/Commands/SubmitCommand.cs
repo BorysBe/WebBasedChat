@@ -19,7 +19,7 @@ namespace WebBasedChat.Client.Commands
         {
             if (!string.IsNullOrEmpty(_state.LastMessage))
             {
-                _clientProxy.Send(_state.LastMessage);
+                _clientProxy.Send(_state.LastMessage, (int)_state.JoinedChatRoom);
             }
         }
     }

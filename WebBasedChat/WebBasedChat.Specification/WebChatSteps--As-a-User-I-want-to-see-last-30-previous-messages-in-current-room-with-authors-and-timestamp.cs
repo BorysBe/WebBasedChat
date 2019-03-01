@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Linq;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
+using WebBasedChat.Client.Facades.Contacts;
+using WebBasedChat.Client.Models;
 using WebBasedChat.Communication;
-using WebBasedChat.Communication.Contracts;
 
 namespace WebBasedChat.Specification
 {
@@ -12,15 +12,20 @@ namespace WebBasedChat.Specification
         [Then(@"Following messages was send to user (.*)")]
         public void ThenFollowingMessagesWasSendToUser(int userId, Table table)
         {
-            var bus = (IClientServiceProxy) ScenarioContext.Current["clientServiceProxy" + userId];
-            int minusId = 30;
-            var storedMessages = bus.Last(1, minusId);
+            var state = (State)ScenarioContext.Current["state" + userId];
+            var facade = (ICommunicationFacade)ScenarioContext.Current["application" + userId];
+            facade.LoadMessages();
             int rowNo = 0;
+            if (table.Rows.Count > 0)
+            {
+                Assert.IsNotEmpty(state.Messages, $"There should be stored some messages for {userId}");
+            }
+
             foreach (var row in table.Rows)
             {
-                Assert.AreEqual(row["message"], storedMessages.ElementAt(rowNo).Content);
-                Assert.AreEqual(row["nick"], storedMessages.ElementAt(rowNo).UserName);
-                Assert.IsInstanceOf<DateTime>(storedMessages.ElementAt(rowNo).DateTime);
+                Assert.AreEqual(row["message"], state.Messages[rowNo].Content);
+                Assert.AreEqual(row["nick"], state.Messages[rowNo].UserName);
+                Assert.IsInstanceOf<DateTime>(state.Messages[rowNo].DateTime);
                 rowNo++;
             }
 

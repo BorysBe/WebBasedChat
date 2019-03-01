@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
-using WebBasedChat.Client.Factories.Contracts;
+using WebBasedChat.Client.Facades;
 using WebBasedChat.Client.Models;
 using WebBasedChat.Communication.Contracts;
 

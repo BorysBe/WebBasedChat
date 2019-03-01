@@ -10,7 +10,8 @@ namespace WebBasedChat.Server.Contracts
         /// </summary>
         /// <param name="message">message send to chat room</param>
         /// <param name="userId">id of user</param>
-        void Create(string message, int userId);
+        /// <param name="roomId"></param>
+        void Create(string message, int userId, int roomId);
 
         /// <summary>
         /// Create new room

@@ -30,7 +30,7 @@ namespace WebBasedChat.WpfClient
             Messages.Text = "";
             try
             {
-                App.CommunicationFacade.LoadMesages();
+                App.CommunicationFacade.LoadMessages();
                 foreach (var message in App.StateViewModel.Messages)
                 {
                     Messages.Text += message.UserName + " <" + message.DateTime + "> : " + message.Content + Environment.NewLine;

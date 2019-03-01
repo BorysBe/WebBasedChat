@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows;
+using WebBasedChat.Client.Facades;
+using WebBasedChat.Client.Facades.Contacts;
 using WebBasedChat.Client.Factories;
 using WebBasedChat.Client.Models;
 using WebBasedChat.Communication;
@@ -11,7 +13,7 @@ namespace WebBasedChat.WpfClient
     /// </summary>
     public partial class App : Application
     {
-        public static CommunicationFacade CommunicationFacade;
+        public static ICommunicationFacade CommunicationFacade;
         public static State StateViewModel;
         public static readonly string SampleAddress = "http://" + Environment.MachineName + ":8008/WebBasedChat";
 

@@ -23,8 +23,6 @@ namespace WebBasedChat.Client.Commands
             {
                 _state.Rooms.Add(roomId, roomName);
             }
-
-            _state.SelectedChatRoom = roomId;
         }
     }
 }

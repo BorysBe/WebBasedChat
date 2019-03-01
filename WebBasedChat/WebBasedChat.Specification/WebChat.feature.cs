@@ -269,19 +269,27 @@ this.ScenarioInitialize(scenarioInfo);
 #line 69
  testRunner.Given("User run application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 70
- testRunner.And("User select chat room 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 71
  testRunner.And("User put a nickname \'demo-nick\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 72
+#line 71
  testRunner.And("User click \"Proceed\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 73
+#line 72
  testRunner.And("User click \"Create new room\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 73
+ testRunner.And("User select chat room 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 74
  testRunner.And("User click \"Join\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 75
  testRunner.And("User 2 join chat room 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 76
  testRunner.And("User 3 join chat room 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 77
+ testRunner.And("User click \"Create new room\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 78
+ testRunner.And("User click \"Create new room\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 79
+ testRunner.And("User 4 join chat room 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 80
+ testRunner.And("User 5 join chat room 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "message"});
@@ -315,11 +323,11 @@ this.ScenarioInitialize(scenarioInfo);
                         "Message 14"});
             table1.AddRow(new string[] {
                         "Message 15"});
-#line 77
+#line 81
  testRunner.And("User 2 submit messages", ((string)(null)), table1, "And ");
-#line 94
+#line 98
  testRunner.And("User enter \"some text\" message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 95
+#line 99
  testRunner.And("User click \"Submit\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -354,135 +362,403 @@ this.ScenarioInitialize(scenarioInfo);
                         "Message 14"});
             table2.AddRow(new string[] {
                         "Message 15"});
-#line 96
+#line 100
  testRunner.And("User 3 submit messages", ((string)(null)), table2, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "message",
                         "nick",
                         "date"});
-            table3.AddRow(new string[] {
+#line 118
+ testRunner.Then("Following messages was send to user 4", ((string)(null)), table3, "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "message",
+                        "nick",
+                        "date"});
+#line 121
+ testRunner.And("Following messages was send to user 5", ((string)(null)), table4, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                        "message",
+                        "nick",
+                        "date"});
+            table5.AddRow(new string[] {
                         "Message 2",
                         "User2",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 3",
                         "User2",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 4",
                         "User2",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 5",
                         "User2",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 6",
                         "User2",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 7",
                         "User2",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 8",
                         "User2",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 9",
                         "User2",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 10",
                         "User2",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 11",
                         "User2",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 12",
                         "User2",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 13",
                         "User2",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 14",
                         "User2",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 15",
                         "User2",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "some text",
                         "demo-nick",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 1",
                         "User3",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 2",
                         "User3",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 3",
                         "User3",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 4",
                         "User3",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 5",
                         "User3",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 6",
                         "User3",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 7",
                         "User3",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 8",
                         "User3",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 9",
                         "User3",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 10",
                         "User3",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 11",
                         "User3",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 12",
                         "User3",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 13",
                         "User3",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 14",
                         "User3",
                         "<date>"});
-            table3.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Message 15",
                         "User3",
                         "<date>"});
-#line 114
- testRunner.Then("Following messages was send to user 1", ((string)(null)), table3, "Then ");
+#line 124
+ testRunner.And("Following messages was send to user 1", ((string)(null)), table5, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                        "message",
+                        "nick",
+                        "date"});
+            table6.AddRow(new string[] {
+                        "Message 2",
+                        "User2",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 3",
+                        "User2",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 4",
+                        "User2",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 5",
+                        "User2",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 6",
+                        "User2",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 7",
+                        "User2",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 8",
+                        "User2",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 9",
+                        "User2",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 10",
+                        "User2",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 11",
+                        "User2",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 12",
+                        "User2",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 13",
+                        "User2",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 14",
+                        "User2",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 15",
+                        "User2",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "some text",
+                        "demo-nick",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 1",
+                        "User3",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 2",
+                        "User3",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 3",
+                        "User3",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 4",
+                        "User3",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 5",
+                        "User3",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 6",
+                        "User3",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 7",
+                        "User3",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 8",
+                        "User3",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 9",
+                        "User3",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 10",
+                        "User3",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 11",
+                        "User3",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 12",
+                        "User3",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 13",
+                        "User3",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 14",
+                        "User3",
+                        "<date>"});
+            table6.AddRow(new string[] {
+                        "Message 15",
+                        "User3",
+                        "<date>"});
+#line 157
+ testRunner.And("Following messages was send to user 2", ((string)(null)), table6, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                        "message",
+                        "nick",
+                        "date"});
+            table7.AddRow(new string[] {
+                        "Message 2",
+                        "User2",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 3",
+                        "User2",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 4",
+                        "User2",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 5",
+                        "User2",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 6",
+                        "User2",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 7",
+                        "User2",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 8",
+                        "User2",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 9",
+                        "User2",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 10",
+                        "User2",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 11",
+                        "User2",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 12",
+                        "User2",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 13",
+                        "User2",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 14",
+                        "User2",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 15",
+                        "User2",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "some text",
+                        "demo-nick",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 1",
+                        "User3",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 2",
+                        "User3",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 3",
+                        "User3",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 4",
+                        "User3",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 5",
+                        "User3",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 6",
+                        "User3",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 7",
+                        "User3",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 8",
+                        "User3",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 9",
+                        "User3",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 10",
+                        "User3",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 11",
+                        "User3",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 12",
+                        "User3",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 13",
+                        "User3",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 14",
+                        "User3",
+                        "<date>"});
+            table7.AddRow(new string[] {
+                        "Message 15",
+                        "User3",
+                        "<date>"});
+#line 190
+ testRunner.And("Following messages was send to user 3", ((string)(null)), table7, "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -494,16 +770,16 @@ this.ScenarioInitialize(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Go back to screen 2", null, new string[] {
                         "As-a-User-I-want-to-click-Back-button-so-that-I-can-return-to-the-Screen-2"});
-#line 148
+#line 226
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 149
+#line 227
  testRunner.Given("User run application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 150
+#line 228
  testRunner.And("User see Screen 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 151
+#line 229
  testRunner.When("User click \"Back\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 152
+#line 230
  testRunner.Then("Should see Screen 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

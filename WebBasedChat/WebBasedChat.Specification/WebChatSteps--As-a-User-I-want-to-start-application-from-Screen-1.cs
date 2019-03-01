@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using TechTalk.SpecFlow;
+using WebBasedChat.Client.Facades;
 using WebBasedChat.Client.Models;
 
 namespace WebBasedChat.Specification
@@ -10,8 +11,6 @@ namespace WebBasedChat.Specification
         [When(@"User see application window")]
         public void WhenUserSeeApplicationWindow()
         {
-            var app = (CommunicationFacade) ScenarioContext.Current["application1"];
-            app.Show();
         }
 
         [Then(@"Should see Screen (.*)")]

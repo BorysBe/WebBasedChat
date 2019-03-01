@@ -1,4 +1,5 @@
 ﻿using TechTalk.SpecFlow;
+using WebBasedChat.Client.Facades;
 using WebBasedChat.Client.Factories;
 using WebBasedChat.Client.Models;
 using WebBasedChat.Communication;

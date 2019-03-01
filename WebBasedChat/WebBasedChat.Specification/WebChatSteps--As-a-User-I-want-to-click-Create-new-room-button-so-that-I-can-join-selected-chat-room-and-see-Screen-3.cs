@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
+using WebBasedChat.Client.Facades;
 using WebBasedChat.Client.Models;
 
 namespace WebBasedChat.Specification
@@ -29,14 +30,14 @@ namespace WebBasedChat.Specification
         public void GivenOtherUserSelectChatRoom(int userId, int roomNo)
         {
             var state = (State)ScenarioContext.Current["state" + userId];
-            state.SelectedChatRoom = state.Rooms.ElementAt(roomNo).Key;
+            state.SelectedChatRoom = roomNo;
         }
 
         [Then(@"User join selected chat room")]
         public void ThenUserJoinSelectedChatRoom()
         {
             var state = (State) ScenarioContext.Current["state1"];
-            Assert.AreEqual(state.SelectedChatRoom, state.JoinedChatRoom, "Did not join selected chat room");
+            Assert.AreEqual(state.Rooms.ElementAt((int)state.SelectedChatRoom).Key, state.JoinedChatRoom, "Did not join selected chat room");
         }
 
         [Given(@"User (.*) join chat room (.*)")]

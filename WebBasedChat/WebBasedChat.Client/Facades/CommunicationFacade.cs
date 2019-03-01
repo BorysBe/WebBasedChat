@@ -1,9 +1,11 @@
 ﻿using System;
+using WebBasedChat.Client.Facades.Contacts;
 using WebBasedChat.Client.Factories.Contracts;
+using WebBasedChat.Client.Models;
 
-namespace WebBasedChat.Client.Models
+namespace WebBasedChat.Client.Facades
 {
-    public class CommunicationFacade : IDisposable
+    public class CommunicationFacade : IDisposable, ICommunicationFacade
     {
         private readonly ICommandFactory _commandFactory;
         private State State { get; }
@@ -28,11 +30,7 @@ namespace WebBasedChat.Client.Models
         {
             _commandFactory.CreateFrom("Submit").Execute();
         }
-
-        public void Show()
-        {
-        }
-
+        
         public void Proceed()
         {
             _commandFactory.CreateFrom("Proceed").Execute();
@@ -48,7 +46,7 @@ namespace WebBasedChat.Client.Models
             _commandFactory.CreateFrom("Create new room").Execute();
         }
 
-        public void LoadMesages()
+        public void LoadMessages()
         {
             _commandFactory.CreateLoadMessages().Execute();
         }

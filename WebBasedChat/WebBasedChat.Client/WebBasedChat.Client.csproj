@@ -47,9 +47,10 @@
     <Compile Include="Commands\JoinSelectedRoomCommand.cs" />
     <Compile Include="Commands\ProceedScreenCommand.cs" />
     <Compile Include="Commands\SubmitCommand.cs" />
-    <Compile Include="Models\CommunicationFacade.cs" />
+    <Compile Include="Facades\CommunicationFacade.cs" />
     <Compile Include="Factories\CommandFactory.cs" />
     <Compile Include="Commands\NullObjectCommand.cs" />
+    <Compile Include="Facades\Contacts\ICommunicationFacade.cs" />
     <Compile Include="Models\State.cs" />
   </ItemGroup>
   <ItemGroup>

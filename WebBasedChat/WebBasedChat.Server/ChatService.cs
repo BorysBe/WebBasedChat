@@ -23,7 +23,7 @@ namespace WebBasedChat.Server
 
         public void Send(Message message)
         {
-            _repository.Create(message.Content, message.UserId);
+            _repository.Create(message.Content, message.UserId, message.RoomId);
         }
 
         public int CreateRoom(string roomName)

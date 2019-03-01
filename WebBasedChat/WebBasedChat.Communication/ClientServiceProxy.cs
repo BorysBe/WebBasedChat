@@ -19,9 +19,9 @@ namespace WebBasedChat.Communication
             _proxy = factory.CreateChannel();
         }
 
-        public void Send(string message)
+        public void Send(string message, int roomId)
         {
-            this._proxy.Send(new Message() { Content = message, UserId = _userId });
+            this._proxy.Send(new Message() { Content = message, UserId = _userId, RoomId = roomId});
         }
 
         public IEnumerable<StoredMessage> Last(int roomId, int idxOffset = 0)
